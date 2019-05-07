@@ -36,13 +36,13 @@ function checkFileType(file, cb){
   }
 }
 
-// Init app
+// Initialize app
 const app = express();
 
 // EJS
 app.set('view engine', 'ejs');
 
-// Public Folder
+// Set 'public' folder as static
 app.use(express.static('./public'));
 
 app.get('/', (req, res) => res.render('index'));
@@ -68,6 +68,6 @@ app.post('/upload', (req, res) => {
   });
 });
 
-const port = 3000;
+const PORT = process.env.PORt || 3000;
 
-app.listen(port, () => console.log(`Server started on port ${port}`));
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
