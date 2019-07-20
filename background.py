@@ -1,5 +1,5 @@
 from PIL import Image
-im = Image.open("tt.png")
+im = Image.open("uploads\tt.png")
 def temp(f, t): 
 	return int((abs(f[0]-t[0])**2 + abs(f[1]-t[1])**2 + abs(f[2]-t[2]))**0.5)
 d = im.size #size ka tupple hai yeah 

@@ -1,7 +1,8 @@
 import io
 import os
-
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="apikey.json"
 # Imports the Google Cloud client library
+
 from google.cloud import vision
 from google.cloud.vision import types
 
@@ -19,7 +20,7 @@ with io.open(file_name, 'rb') as image_file:
 
 image = types.Image(content=content)
 
-
+file1 = open("myfile.txt","w") 
     
     
 def detect_text(path):
@@ -36,13 +37,19 @@ def detect_text(path):
     response = client.text_detection(image=image)
     texts = response.text_annotations
     print('Texts:')
-
+    x=len(texts) 
+    count=0
     for text in texts:
-        print('\n"{}"'.format(text.description))
+        count=count+1
+        if count==x/2:
+            break
+            
+        file1.write('\n{}'.format(text.description)) 
+       # print('\n{}'.format(text.description))
 
         #vertices = (['({},{})'.format(vertex.x, vertex.y)
-                   # for vertex in text.bounding_poly.vertices])
+                   #for vertex in text.bounding_poly.vertices])
 
-        print('bounds: {}'.format(','.join(vertices)))
+        #print('bounds: {}'.format(','.join(vertices)))
         
 detect_text('time.png')
