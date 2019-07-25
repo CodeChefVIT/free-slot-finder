@@ -1,24 +1,37 @@
 const express = require('express');
 const multer = require('multer');
-const ejs = require('ejs');
+// const ejs = require('ejs');
 const path = require('path');
+var bodyParser = require('body-parser');
+const {PythonShell} = require("python-shell");
+const app = express();
+app.use(bodyParser.json());
+
+// Run python script
+PythonShell.run('script.py', null, function (err) {
+  if (err) throw err;
+  console.log('Ran python file');
+});
 
 // Set storage engine
-const storage = multer.diskStorage({
-  destination: './public/uploads/',
+var storage = multer.diskStorage({
+  // destination: './public/uploads/',
+  destination: function(req, file, callback) {
+    callback(null, "./public/uploads");
+  },
   filename: function(req, file, cb){
-    cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    cb(null,file.fieldname + '-' + Date.now() + file.originalname);
   }
 });
 
 // Init Upload
-const upload = multer({
+var upload = multer({
   storage: storage,
   limits:{fileSize: 1000000},
   fileFilter: function(req, file, cb){
     checkFileType(file, cb);
   }
-}).single('myImage');
+}).single('text');
 
 // Check File Type
 function checkFileType(file, cb){
@@ -36,18 +49,22 @@ function checkFileType(file, cb){
   }
 }
 
-// Initialize app
-const app = express();
+
 
 // EJS
-app.set('view engine', 'ejs');
+// app.set('view engine', 'html');
 
 // Set 'public' folder as static
 app.use(express.static('./public'));
 
-app.get('/', (req, res) => res.render('index'));
+// app.get('/', (req, res) => res.render('index'));
 
-app.post('/upload', (req, res) => {
+app.get("/", function(req, res) {
+  res.sendFile(__dirname + "/index.html");
+});
+
+app.post('./public', (req, res) => {
+  res.sendFile(__dirname + "/upload.html");
   upload(req, res, (err) => {
     if(err){
       res.render('index', {
