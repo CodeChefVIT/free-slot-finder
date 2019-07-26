@@ -12,12 +12,15 @@ PythonShell.run('script.py', null, function (err) {
   console.log('Ran python file');
 });
 
+// Set 'public' folder as static
+app.use(express.static('./public'));
+
 // Set storage engine
 var storage = multer.diskStorage({
-  // destination: './public/uploads/',
-  destination: function(req, file, callback) {
-    callback(null, "./public/uploads");
-  },
+  destination: './public/uploads/',
+  // destination: function(req, file, callback) {
+  //   callback(null,__dirname + "/public/uploads");
+  // },
   filename: function(req, file, cb){
     cb(null,file.fieldname + '-' + Date.now() + file.originalname);
   }
@@ -40,7 +43,7 @@ function checkFileType(file, cb){
   const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
   // Check mime
   const mimetype = filetypes.test(file.mimetype);
-
+  // Condition check
   if(mimetype && extname){
     return cb(null,true);
   } else {
@@ -51,11 +54,6 @@ function checkFileType(file, cb){
 // EJS
 // app.set('view engine', 'html');
 
-// Set 'public' folder as static
-app.use(express.static('./public'));
-
-// app.get('/', (req, res) => res.render('index'));
-
 app.get("/", function(req, res) {
   res.sendFile(__dirname + "/index.html");
 });
@@ -65,7 +63,7 @@ app.post("/upload", function(req, res) {
       if (err) {
           return res.end("Something went wrong!");
       }
-      return res.end("File uploaded sucessfully!.");
+      // return res.end("File uploaded sucessfully!.");
   });
   res.sendFile(__dirname + "/public/upload.html");
 });
