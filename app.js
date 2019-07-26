@@ -1,6 +1,5 @@
 const express = require('express');
 const multer = require('multer');
-// const ejs = require('ejs');
 const path = require('path');
 var bodyParser = require('body-parser');
 const {PythonShell} = require("python-shell");
@@ -49,8 +48,6 @@ function checkFileType(file, cb){
   }
 }
 
-
-
 // EJS
 // app.set('view engine', 'html');
 
@@ -63,27 +60,42 @@ app.get("/", function(req, res) {
   res.sendFile(__dirname + "/index.html");
 });
 
-app.post('./public', (req, res) => {
-  res.sendFile(__dirname + "/upload.html");
-  upload(req, res, (err) => {
-    if(err){
-      res.render('index', {
-        msg: err
-      });
-    } else {
-      if(req.file == undefined){
-        res.render('index', {
-          msg: 'Error: No File Selected!'
-        });
-      } else {
-        res.render('index', {
-          msg: 'File Uploaded!',
-          file: `uploads/${req.file.filename}`
-        });
+app.post("/upload", function(req, res) {
+  upload(req, res, function(err) {
+      if (err) {
+          return res.end("Something went wrong!");
       }
-    }
+      return res.end("File uploaded sucessfully!.");
   });
+  res.sendFile(__dirname + "/public/upload.html");
 });
+
+// app.get("/upload", function(req, res) {
+//   res.sendFile(__dirname + "/public/upload.html");
+// });
+
+// app.post('/upload', (req, res) => {
+//   upload(req, res, (err) => {
+//     if(err){
+//       res.render('index', {
+//         msg: err
+//       });
+//     } else {
+//       if(req.file == undefined){
+//         res.render('index', {
+//           msg: 'Error: No File Selected!'
+//         });
+//       } else {
+//         res.render('index', {
+//           msg: 'File Uploaded!',
+//           file: `uploads/${req.file.filename}`
+//         });
+//       }
+//     }
+//   });
+// });
+
+
 
 const PORT = process.env.PORt || 3000;
 
