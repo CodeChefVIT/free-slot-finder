@@ -7,7 +7,7 @@ var upload = multer({ dest: 'uploads/' })
 const app = express();
 app.use(bodyParser.json());
 
-// Run python script
+// Set static folder
 app.use(express.static('./public'));
 
 
@@ -46,14 +46,9 @@ app.post("/upload", upload.single("file"), function(req, res) {
 PythonShell.run('script.py', {args:[filepath]}, function (err) {
   if (err) throw err;
   console.log('Ran python file');
-// Set 'public' folder as static
   res.sendFile(__dirname + "/public/upload.html");
 })
 });
-
-// app.get("/upload", function(req, res) {
-//   res.sendFile(__dirname + "/public/upload.html");
-// });
 
 // app.post('/upload', (req, res) => {
 //   upload(req, res, (err) => {
