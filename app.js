@@ -3,37 +3,13 @@ const multer = require('multer');
 const path = require('path');
 var bodyParser = require('body-parser');
 const {PythonShell} = require("python-shell");
+var upload = multer({ dest: 'uploads/' })
 const app = express();
 app.use(bodyParser.json());
 
 // Run python script
-PythonShell.run('script.py', null, function (err) {
-  if (err) throw err;
-  console.log('Ran python file');
-});
-
-// Set 'public' folder as static
 app.use(express.static('./public'));
 
-// Set storage engine
-var storage = multer.diskStorage({
-  destination: './public/uploads/',
-  // destination: function(req, file, callback) {
-  //   callback(null,__dirname + "/public/uploads");
-  // },
-  filename: function(req, file, cb){
-    cb(null,file.fieldname + '-' + Date.now() + file.originalname);
-  }
-});
-
-// Init Upload
-var upload = multer({
-  storage: storage,
-  limits:{fileSize: 1000000},
-  fileFilter: function(req, file, cb){
-    checkFileType(file, cb);
-  }
-}).single('text');
 
 // Check File Type
 function checkFileType(file, cb){
@@ -58,14 +34,21 @@ app.get("/", function(req, res) {
   res.sendFile(__dirname + "/index.html");
 });
 
-app.post("/upload", function(req, res) {
-  upload(req, res, function(err) {
-      if (err) {
-          return res.end("Something went wrong!");
-      }
-      // return res.end("File uploaded sucessfully!.");
-  });
+app.post("/upload", upload.single("file"), function(req, res) {
+  let filepath = "uploads/" + req.file.filename
+  let newfilepath = "uploads/" + req.body.text
+  console.log(req.file)
+  console.log(req.body.text)
+  //fs.rename(filepath, newfilepath, (err) => {
+
+  //})
+
+PythonShell.run('script.py', {args:[filepath]}, function (err) {
+  if (err) throw err;
+  console.log('Ran python file');
+// Set 'public' folder as static
   res.sendFile(__dirname + "/public/upload.html");
+})
 });
 
 // app.get("/upload", function(req, res) {
