@@ -30,10 +30,16 @@
     </div>
 
     <div class="main">
-    <!-- <div class="alert alert-primary" role="alert"> -->
-    Congrats! Your timetable has been uploaded.
-    <!-- </div> -->
+    Your free slots are: 
+
+    <!-- <p id="demo"></p> -->
+
+<%= fs.readFile("./public/temp.txt", "utf-8", (err, data) => {
+    if (err) throw err;
+     console.log(data); 
+     <!-- document.getElementById("demo").innerHTML = data; -->
+   }) %>
     </div>
-    
+        
     </body>
 </html>
