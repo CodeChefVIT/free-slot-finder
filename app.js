@@ -68,6 +68,13 @@ const PORT = process.env.PORt || 3000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 
 
+// fs.readFile("./public/temp.txt", "utf-8", (err, data) => { 
+//   if (err) {  
+//     console.log(err)  } 
+//   else { 
+//     console.log(data);  < p id="demo" >  data </p>  }}) 
+
+
 // app.post("/uploads", upload.single('file'), function(req, res) {
 //   let filepath = "/public/uploads/" + req.file.filename
 //   let newfilepath = "/public/uploads/" + req.body.text
