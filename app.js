@@ -47,39 +47,33 @@ var storage = multer.diskStorage({
 app.post('/upload', function(req, res) {
 	var upload = multer({
 		storage: storage
-	}).single('file')
+	  }).single('file')
 	upload(req, res, function(err) {
-      res.render('upload', { fs: fs });   
-
-      console.log(req.file)
-      console.log(req.body.text)    
-      let filepath = __dirname + "/public/uploads/" + req.file.filename
-      let newfilepath = __dirname + "/public/uploads/" + req.body.text 
-      fs.rename(filepath, newfilepath, (err) => {
-        if (err) throw err;
-        console.log('Rename complete!');
-});
-PythonShell.run('background.py', {args:[filepath]}, function (err) {
-  if (err) throw err;
-  console.log('Ran python file');
-  // res.sendFile(__dirname + "/public/upload.html");
-})
+    fs.readFile("./public/temp.txt", "utf-8", (err, data) => { 
+      if (err) {  
+        console.log(err)  } 
+      else { 
+        console.log(data); 
+        res.render('upload', { data: data });   
+      }}) 
+    console.log(req.file)
+    console.log(req.body.text)    
+    let filepath = __dirname + "/public/uploads/" + req.file.filename
+    let newfilepath = __dirname + "/public/uploads/" + req.body.text 
+    fs.rename(filepath, newfilepath, (err) => {
+      if (err) throw err;
+      console.log('Rename complete!');
+    });
+    PythonShell.run('background.py', {args:[filepath]}, function (err) {
+      if (err) throw err;
+      console.log('Ran python file');
+    })
   })
-
 })
-
 
 const PORT = process.env.PORt || 3000;
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
-
-
-// fs.readFile("./public/temp.txt", "utf-8", (err, data) => { 
-//   if (err) {  
-//     console.log(err)  } 
-//   else { 
-//     console.log(data);  < p id="demo" >  data </p>  }}) 
-
 
 // app.post("/uploads", upload.single('file'), function(req, res) {
 //   let filepath = "/public/uploads/" + req.file.filename
