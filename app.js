@@ -64,7 +64,13 @@ app.post('/upload', function(req, res) {
       if (err) throw err;
       console.log('Rename complete!');
     });
-    PythonShell.run('background.py', {args:[filepath]}, function (err) {
+
+    var options = {
+      // scriptPath: 'python/scripts',
+      args: [newfilepath]// pass arguments to the script here
+    };
+
+    PythonShell.run('background.py', options, function (err) {
       if (err) throw err;
       console.log('Ran python file');
     })
