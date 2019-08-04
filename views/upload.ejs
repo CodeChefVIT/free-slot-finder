@@ -30,12 +30,7 @@
     </div>
 
     <div class="main">
-    Your free slots are: 
-
-
-    <% fs.readFile("./public/temp.txt", "utf-8", (err, data) => { %> <% if (err) { %> <% console.log(err) %> <% } else { %> <‰ console.log(data); %> < p id="demo" > <%= data %></p> <% }}) %>
-
-  
+    Your free slots are: <%= data %>
     </div>
         
     </body>
