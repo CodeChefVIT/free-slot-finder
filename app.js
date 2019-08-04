@@ -59,7 +59,13 @@ app.post('/upload', function(req, res) {
         if (err) throw err;
         console.log('Rename complete!');
 });
-	})
+PythonShell.run('background.py', {args:[filepath]}, function (err) {
+  if (err) throw err;
+  console.log('Ran python file');
+  // res.sendFile(__dirname + "/public/upload.html");
+})
+  })
+
 })
 
 
@@ -83,9 +89,5 @@ app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 //   //fs.rename(filepath, newfilepath, (err) => {
 
 //   //})
-// // PythonShell.run('script.py', {args:[filepath]}, function (err) {
-// //   if (err) throw err;
-// //   console.log('Ran python file');
-// //   res.sendFile(__dirname + "/public/upload.html");
-// // })
+
 // });
