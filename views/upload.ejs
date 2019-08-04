@@ -32,13 +32,10 @@
     <div class="main">
     Your free slots are: 
 
-    <!-- <p id="demo"></p> -->
 
-<%= fs.readFile("./public/temp.txt", "utf-8", (err, data) => {
-    if (err) throw err;
-     console.log(data); 
-     <!-- document.getElementById("demo").innerHTML = data; -->
-   }) %>
+    <% fs.readFile("./public/temp.txt", "utf-8", (err, data) => { %> <% if (err) { %> <% console.log(err) %> <% } else { %> <‰ console.log(data); %> < p id="demo" > <%= data %></p> <% }}) %>
+
+  
     </div>
         
     </body>
