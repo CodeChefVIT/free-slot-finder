@@ -138,19 +138,19 @@ for y in final_list:
         print(s)
         print("\n")
     elif(i==13):
-        s="Tuesday"
+        s="Tuesday:"
         print("\n")
         print(s)
     elif(i==26):
-        s="Wednesday"
+        s="Wednesday:"
         print("\n")
         print(s)
     elif(i==39):
-        s="Thrusday"
+        s="Thrusday:"
         print("\n")
         print(s)
     elif(i==52):
-        s="Friday"
+        s="Friday:"
         print("\n")
         print(s)
         
