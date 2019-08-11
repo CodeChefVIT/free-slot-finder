@@ -18,6 +18,7 @@
             align-items:center;
             justify-content:center;
             padding-top:10%;
+            /* padding-left:10%; */
             font-size:180%;
         }
     
@@ -30,7 +31,17 @@
     </div>
 
     <div class="main">
-    Your free slots are: <%= results %>
+    Your free slots are: 
+    <br>
+    <!-- <%= results %> -->
+    <table>
+        <% for(var i=0; i < results.length; i++) { %>
+           <tr>
+             <td><%= results[i] %></td>
+
+           </tr>
+        <% } %>
+        </table>
     </div>
         
     </body>
