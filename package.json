@@ -1,21 +1,28 @@
 {
-  "name": "nodeuploads",
+  "name": "free-slot-finder",
   "version": "1.0.0",
-  "description": "Image uploading",
+  "description": "Free Slot Finder is an assisitve technology that makes finding free slots from a time table easier. ## How to run? 1. git clone [https://github.com/RajatSablok/free-slot-finder/](https://github.com/RajatSablok/free-slot-finder/)  2. cd free-slot-finder 3. npm install 4. Run node.js app using node app.js 5. Open localhost:3000 in your browser",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Rajat Sablok",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeChefVIT/free-slot-finder.git"
+  },
+  "keywords": [],
+  "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodeChefVIT/free-slot-finder/issues"
+  },
+  "homepage": "https://github.com/CodeChefVIT/free-slot-finder#readme",
   "dependencies": {
-    "body-parser": "^1.19.0",
+		 "body-parser": "^1.19.0",
     "ejs": "^2.6.2",
     "express": "^4.17.1",
     "multer": "^1.4.2",
     "python-shell": "^1.0.7"
-  },
-  "devDependencies": {
-    "nodemon": "^1.19.1"
+
   }
 }
