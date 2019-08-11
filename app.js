@@ -1,17 +1,18 @@
-const express = require('express');
-const multer = require('multer');
+const fs = require('fs');
 const path = require('path');
+const multer = require('multer');
+const express = require('express');
 var bodyParser = require('body-parser');
 const {PythonShell} = require("python-shell");
-var upload = multer({ dest: 'uploads/' })
+
 const app = express();
+
 app.use(bodyParser.json());
-const fs = require('fs');
 
 // Set static folder
 app.use(express.static('./public'));
 
-// EJS
+// Set template engine
 app.set('view engine', 'ejs');
 
 // Check File Type
@@ -34,6 +35,7 @@ app.get("/", function(req, res) {
   res.sendFile(__dirname + "/index.html");
 });
 
+// Set storage engine
 var storage = multer.diskStorage({
 	destination: function(req, file, callback) {
 		callback(null, './public/uploads')
@@ -48,46 +50,46 @@ app.post('/upload', function(req, res) {
 	var upload = multer({
 		storage: storage
 	  }).single('file')
-	upload(req, res, function(err) {
-    fs.readFile("./public/temp.txt", "utf-8", (err, data) => { 
-      if (err) {  
-        console.log(err)  } 
-      else { 
-        console.log(data); 
-        res.render('upload', { data: data });   
-      }}) 
-    console.log(req.file)
-    console.log(req.body.text)    
-    let filepath = __dirname + "/public/uploads/" + req.file.filename
-    let newfilepath = __dirname + "/public/uploads/" + req.body.text 
-    fs.rename(filepath, newfilepath, (err) => {
-      if (err) throw err;
-      console.log('Rename complete!');
+  	upload(req, res, function(err) {
+ 
+  // console.log(req.file)
+  // console.log(req.body.text)    
+  
+  let filepath = __dirname + "/public/uploads/" + req.file.filename
+  let newfilepath = __dirname + "/public/uploads/" + req.body.text 
+  
+  // Rename already uploaded file from random name to name given in form
+  fs.rename(filepath, newfilepath, (err) => {
+    if (err) throw err;
+    // console.log('Rename complete!');
     });
 
-    var options = {
-      // scriptPath: 'python/scripts',
-      args: [newfilepath]// pass arguments to the script here
-    };
+  // Options for running python script  
+  var options = {
+    args: [newfilepath]// pass arguments to the script here
+  };
 
-    PythonShell.run('background.py', options, function (err) {
-      if (err) throw err;
-      console.log('Ran python file');
+  PythonShell.run('script.py', options, function (err, results) {
+    if (err) throw err;
+    // console.log(results);
+    
+    // Read the temporary text file
+    // fs.readFile("./public/temp.txt", "utf-8", (err, data) => { 
+    //   if (err) {  
+    //     console.log(err)  } 
+    //   else { 
+    //     console.log(data); 
+    //   }})
+    
+      res.render('upload', { results: results });   
+
+    // console.log('Ran python file');
     })
   })
 })
 
+// Set port number
 const PORT = process.env.PORt || 3000;
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 
-// app.post("/uploads", upload.single('file'), function(req, res) {
-//   let filepath = "/public/uploads/" + req.file.filename
-//   let newfilepath = "/public/uploads/" + req.body.text
-//   console.log(req.file)
-//   console.log(req.body.text)
-//   //fs.rename(filepath, newfilepath, (err) => {
-
-//   //})
-
-// });

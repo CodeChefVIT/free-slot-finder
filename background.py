@@ -22,4 +22,5 @@ for i in range(d[0]):
 			else:
 				out.putpixel((i,j), (255,255,0))# for the normal maximum yellow
 out.save("time.png")
+print("Heyy")
 #out.rotate(180).save("timetable.png")
