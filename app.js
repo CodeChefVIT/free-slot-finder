@@ -66,12 +66,14 @@ app.post('/upload', function(req, res) {
 
   // Options for running python script  
   var options = {
+    mode: 'text',
     args: [newfilepath]// pass arguments to the script here
   };
 
   PythonShell.run('script.py', options, function (err, results) {
     if (err) throw err;
-    // console.log(results);
+    console.log(results);
+    
     
     // Read the temporary text file
     // fs.readFile("./public/temp.txt", "utf-8", (err, data) => { 

@@ -134,7 +134,7 @@ while a < 13:
 i=0
 for y in final_list:
     if(i==0):
-        s="Monday"
+        s="Monday:"
         print(s)
         print("\n")
     elif(i==13):
