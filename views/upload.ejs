@@ -33,47 +33,50 @@
     <div class="main">
     Your free slots are: 
     <br>
+    
     <% for(var i=0; i < results.length; i++) { %>
+    
+        <table>       
             
-        <th>Monday</th>
-            <% while(results[i] != 'Tuesday') { %>
-                <tr>
+            <tr>
+                <td>Monday</td>
+                <% while(results[i] != 'Tuesday') { %>
+                    <td> <%= results[i] %></td>  
+            </tr>                  
+                <% } %>        
+
+
+            <tr>
+                <td>Tuesday</td>
+                <% while(results[i] != 'Wednesday') { %>
+                    <td> <%= results[i] %></td>  
+            </tr>               
+            <% } %>
+
+
+            <tr> 
+                <td>Wednesday</td>
+                <% while(results[i] != 'Thursday') { %>
                     <td> <%= results[i] %></td> 
-                </tr>
-                   
-            <% } %>        
+            </tr>                
+            <% } %>
 
-        <th>Tuesday</th>
-        <% while(results[i] != 'Wednesday') { %>
-            <tr>
-                <td> <%= results[i] %></td> 
-            </tr>
-                
-        <% } %>
 
-        <th>Wednesday</th>
-        <% while(results[i] != 'Thursday') { %>
             <tr>
-                <td> <%= results[i] %></td> 
-            </tr>
-                
-        <% } %>
+                <td>Thursday</td>
+                <% while(results[i] != 'Friday') { %>
+                    <td> <%= results[i] %></td>
+            </tr>                 
+            <% } %> 
 
-        <th>Thursday</th>
-        <% while(results[i] != 'Friday') { %>
-            <tr>
-                <td> <%= results[i] %></td> 
-            </tr>
-                
-        <% } %> 
 
-        <th>Friday</th>
             <tr>
-                <td> <%= results[i] %></td> 
-            </tr>
-        
-        <% } %>        
-        </div>
-        
+                <td>Friday</td>
+                    <td> <%= results[i] %></td>
+            </tr> 
+            <% } %> 
+        </table>       
+    </div>
+   
     </body>
 </html>
