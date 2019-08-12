@@ -33,16 +33,47 @@
     <div class="main">
     Your free slots are: 
     <br>
-    <!-- <%= results %> -->
-    <table>
-        <% for(var i=0; i < results.length; i++) { %>
-           <tr>
-             <td><%= results[i] %></td>
+    <% for(var i=0; i < results.length; i++) { %>
+            
+        <th>Monday</th>
+            <% while(results[i] != 'Tuesday') { %>
+                <tr>
+                    <td> <%= results[i] %></td> 
+                </tr>
+                   
+            <% } %>        
 
-           </tr>
+        <th>Tuesday</th>
+        <% while(results[i] != 'Wednesday') { %>
+            <tr>
+                <td> <%= results[i] %></td> 
+            </tr>
+                
         <% } %>
-        </table>
-    </div>
+
+        <th>Wednesday</th>
+        <% while(results[i] != 'Thursday') { %>
+            <tr>
+                <td> <%= results[i] %></td> 
+            </tr>
+                
+        <% } %>
+
+        <th>Thursday</th>
+        <% while(results[i] != 'Friday') { %>
+            <tr>
+                <td> <%= results[i] %></td> 
+            </tr>
+                
+        <% } %> 
+
+        <th>Friday</th>
+            <tr>
+                <td> <%= results[i] %></td> 
+            </tr>
+        
+        <% } %>        
+        </div>
         
     </body>
 </html>
