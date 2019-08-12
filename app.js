@@ -54,7 +54,10 @@ app.post('/upload', function(req, res) {
  
   // console.log(req.file)
   // console.log(req.body.text)    
+	if (err) 
+		return res.json({err}).status(400)
   
+						console.log(req.file)
   let filepath = __dirname + "/public/uploads/" + req.file.filename
   let newfilepath = __dirname + "/public/uploads/" + req.body.text 
   
