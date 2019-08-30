@@ -70,6 +70,7 @@ app.post('/upload', function(req, res) {
   // Options for running python script  
   var options = {
     mode: 'text',
+		pythonPath: "/usr/bin/python",
     args: [newfilepath]// pass arguments to the script here
   };
 
