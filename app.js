@@ -73,7 +73,7 @@ app.post('/upload', function(req, res) {
     args: [newfilepath]// pass arguments to the script here
   };
 
-  PythonShell.run('script.py', options, function (err, results) {
+  PythonShell.run('final.py', options, function (err, results) {
     if (err) throw err;
     console.log(results);
     
@@ -86,7 +86,7 @@ app.post('/upload', function(req, res) {
     //     console.log(data); 
     //   }})
     
-      res.render('upload', { results: results });   
+      // res.render('upload', { results: results });   
 
     // console.log('Ran python file');
     })
