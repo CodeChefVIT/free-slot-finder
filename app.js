@@ -10,8 +10,6 @@ const app = express();
 
 const {create} = require('./model/UserSlots');
 
-
-
 app.use(bodyParser.json());
 
 // DataBase Config
@@ -85,9 +83,6 @@ app.post('/upload', function(req, res, next) {
     if (err) throw err;
     // console.log('Rename complete!');
     });
-
-    // console.log(newfilepath);
-
 
   // Options for running python script  
   var options = {
