@@ -1,13 +1,33 @@
 const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
+var mongoose = require('mongoose');
 const express = require('express');
 var bodyParser = require('body-parser');
 const {PythonShell} = require("python-shell");
 
 const app = express();
 
+const {create} = require('./model/UserSlots');
+
+
+
 app.use(bodyParser.json());
+
+// DataBase Config
+const db = require('./config/keys').mongoURI;
+
+// Connect to MongoDB
+mongoose
+  .connect(
+    db,
+    { useNewUrlParser: true,
+      useCreateIndex: true,
+      useFindAndModify: false,
+      useUnifiedTopology: true }
+  )
+  .then(() => console.log('MongoDB Connected'))
+  .catch(err => console.log(err));
 
 // Set static folder
 app.use(express.static('./public'));
@@ -46,18 +66,17 @@ var storage = multer.diskStorage({
 	}
 })
 
-app.post('/upload', function(req, res) {
+app.post('/upload', function(req, res, next) {
 	var upload = multer({
 		storage: storage
 	  }).single('file')
   	upload(req, res, function(err) {
- 
-  // console.log(req.file)
-  // console.log(req.body.text)    
+
 	if (err) 
 		return res.json({err}).status(400)
   
-						console.log(req.file)
+    console.log(req.file)
+    
   let filepath = __dirname + "/public/uploads/" + req.file.filename
   let newfilepath = __dirname + "/public/uploads/" + req.body.text 
   
@@ -66,6 +85,9 @@ app.post('/upload', function(req, res) {
     if (err) throw err;
     // console.log('Rename complete!');
     });
+
+    // console.log(newfilepath);
+
 
   // Options for running python script  
   var options = {
@@ -76,25 +98,14 @@ app.post('/upload', function(req, res) {
   PythonShell.run('final.py', options, function (err, results) {
     if (err) throw err;
     console.log(results);
-    
-    
-    // Read the temporary text file
-    // fs.readFile("./public/temp.txt", "utf-8", (err, data) => { 
-    //   if (err) {  
-    //     console.log(err)  } 
-    //   else { 
-    //     console.log(data); 
-    //   }})
-    
-      // res.render('upload', { results: results });   
 
-    // console.log('Ran python file');
-    })
+    create({'name': newfilepath, 'timetable': results})
+    .then((d) => res.json(d))
+    .catch(err => console.log(err));
   })
 })
-
+})
 // Set port number
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
-
