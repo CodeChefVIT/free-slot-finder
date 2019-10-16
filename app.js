@@ -8,7 +8,8 @@ const {PythonShell} = require("python-shell");
 
 const app = express();
 
-const {create} = require('./model/UserSlots');
+// const {create} = require('./model/UserSlots'); 
+const UserSlots = require('./model/UserSlots');
 
 app.use(bodyParser.json());
 
@@ -94,9 +95,17 @@ app.post('/upload', function(req, res, next) {
     if (err) throw err;
     console.log(results);
 
-    create({'name': newfilepath, 'timetable': results})
-    .then((d) => res.json(d))
-    .catch(err => console.log(err));
+    new UserSlots({'name': newfilepath, 'timetable': results})
+    .save()
+    .then((data)=>{
+      console.log(data)
+      res.json(data)
+    })
+    .catch((err)=>console.log(err))
+
+    // create({'name': newfilepath, 'timetable': results})
+    // .then((d) => res.json(d))
+    // .catch(err => console.log(err));
   })
 })
 })

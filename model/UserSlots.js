@@ -14,6 +14,8 @@ const UserSchema = new mongoose.Schema({
 
 const UserSlots = mongoose.model('UserSlot', UserSchema);
 
-module.exports.create = function(args){
-    return UserSlots.create(args)
-}
+module.exports = UserSlots;
+
+// module.exports.create = function(args){
+//     return UserSlots.create(args)
+// }
