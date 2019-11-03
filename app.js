@@ -99,7 +99,8 @@ app.post('/upload', function(req, res, next) {
     .save()
     .then((data)=>{
       console.log(data)
-      res.json(data)
+      // res.json(data)
+      res.render('upload', {results: data})
     })
     .catch((err)=>console.log(err))
 
