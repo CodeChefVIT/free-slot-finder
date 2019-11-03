@@ -110,6 +110,20 @@ app.post('/upload', function(req, res, next) {
   })
 })
 })
+
+
+app.get('/compare', function(req, res){
+UserSlots.find({})
+  .then((data)=>{
+  console.log(data)
+  // res.json(data)
+  res.render('compare', {data:data})
+
+  })
+  .catch((err)=>console.log(err))
+})
+
+
 // Set port number
 const PORT = process.env.PORT || 3000;
 
