@@ -125,9 +125,13 @@ UserSlots.find({}, {_id: 0, name: 1})
 })
 
 app.get('/comparett', function(req, res){
-  res.render('comparett')
+  // res.render('comparett')
   var arr = req.query.check
   console.log(arr)
+  UserSlots.find({name: arr[1]}, {_id: 0, name: 1, timetable: 1})
+    .then((data)=>{
+      console.log(data)
+    })
 })
 
 // Set port number
