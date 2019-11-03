@@ -24,34 +24,31 @@
     
     </style>
 
-
-
-    <form method="get">
+    <form method="get" action="/comparett">
         <% for(var i=0; i < data.length; i++){ %>
         <input type="checkbox" value="<%= data[i].name %>" name="check"><%= data[i].name %><br>
         <% } %>
-        <input type="button" onclick="myFunction()" value="Send order">
-
-        <input type="text" id="order" size="50">
-
+        <!-- <input type="button" onclick="myFunction()" value="Compare"> -->
+        <button type="submit" onclick="myFunction()" value="compare">Compare</button>
+        <input type="text" id="compare" size="50">
 
     </form>
 
     <script>
-            function myFunction() {
-              var check = document.forms[0];
-              var txt = "";
-              var i;
-              for (i = 0; i < check.length; i++) {
-                if (check[i].checked) {
-                  txt = txt + check[i].value + " ";
-                }
-              }
-
-            //   document.getElementById("order").value = "You ordered a coffee with: " + txt;
-              alert(txt)
+        function myFunction() {
+            var check = document.forms[0];
+            var txt = "";
+            var i;
+            for (i = 0; i < check.length; i++) {
+            if (check[i].checked) {
+                txt = txt + check[i].value + " ";
             }
-            </script>
+            }
+
+            document.getElementById("compare").value = " " + txt;
+            // alert(txt)
+        }
+    </script>
       
     </body>
 </html>

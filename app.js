@@ -124,6 +124,11 @@ UserSlots.find({}, {_id: 0, name: 1})
   .catch((err)=>console.log(err))
 })
 
+app.get('/comparett', function(req, res){
+  res.render('comparett')
+  var arr = req.query.check
+  console.log(arr)
+})
 
 // Set port number
 const PORT = process.env.PORT || 3000;
