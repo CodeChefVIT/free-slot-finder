@@ -28,11 +28,30 @@
 
     <form method="get">
         <% for(var i=0; i < data.length; i++){ %>
-        <input type="checkbox"><%= data[i] %><br>
+        <input type="checkbox" value="<%= data[i].name %>" name="check"><%= data[i].name %><br>
         <% } %>
-        <input type="submit" value="Submit">
+        <input type="button" onclick="myFunction()" value="Send order">
 
-      </form>
+        <input type="text" id="order" size="50">
 
+
+    </form>
+
+    <script>
+            function myFunction() {
+              var check = document.forms[0];
+              var txt = "";
+              var i;
+              for (i = 0; i < check.length; i++) {
+                if (check[i].checked) {
+                  txt = txt + check[i].value + " ";
+                }
+              }
+
+            //   document.getElementById("order").value = "You ordered a coffee with: " + txt;
+              alert(txt)
+            }
+            </script>
+      
     </body>
 </html>

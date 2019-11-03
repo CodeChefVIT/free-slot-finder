@@ -95,7 +95,7 @@ app.post('/upload', function(req, res, next) {
     if (err) throw err;
     console.log(results);
 
-    new UserSlots({'name': newfilepath, 'timetable': results})
+    new UserSlots({'name': req.body.text, 'timetable': results})
     .save()
     .then((data)=>{
       console.log(data)
@@ -113,8 +113,9 @@ app.post('/upload', function(req, res, next) {
 
 
 app.get('/compare', function(req, res){
-UserSlots.find({})
+UserSlots.find({}, {_id: 0, name: 1})
   .then((data)=>{
+  var newdata=JSON.stringify(data)
   console.log(data)
   // res.json(data)
   res.render('compare', {data:data})
