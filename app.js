@@ -138,17 +138,26 @@ app.get('/comparett', function(req, res){
       var first = JSON.parse(data[0].timetable)
       console.log(first)
       var newarr= []
+      
+      for(var j = 0; j< 5; j++){
+        newarr[j]=[]
+        for(var k = 0; k<22; k++){
+          newarr[j][k]=0
+        }
+        // console.log(data[i].timetable[0][8])
+        // if(data[i].timetable)
+      }
+
       for(var i = 1; i< data.length; i++){
         var newvar = JSON.parse(data[i].timetable)
-        console.log('next log is the timetable of second person')
+        console.log('next log is the timetable of person ' + (i+1))
         console.log(newvar)
         // console.log('workingloop')
         for(var j = 0; j< 5; j++){
-          newarr[j]=[]
+          // newarr[j]=[]
           for(var k = 0; k<22; k++){
             if(first[j][k]==1 && newvar[j][k]==1){
-              newarr[j][k]=1
-              // console.log('1')
+              newarr[j][k]=newarr[j][k]+1
             }
             else{
               newarr[j][k]=0;
@@ -159,6 +168,25 @@ app.get('/comparett', function(req, res){
           // if(data[i].timetable)
         }
       }
+      console.log('mid array')
+      console.log(newarr)
+
+      var maxRow = newarr.map(function(row){ return Math.max.apply(Math, row); });
+      var max = Math.max.apply(null, maxRow);
+
+      console.log(max)
+
+      for(var j = 0; j< 5; j++){
+        // newarr[j]=[]
+        for(var k = 0; k<22; k++){
+          if(newarr[j][k]!==max){
+            newarr[j][k]=0
+          }
+        }
+        // console.log(data[i].timetable[0][8])
+        // if(data[i].timetable)
+      }
+
       console.log('final array')
       console.log(newarr)
 
