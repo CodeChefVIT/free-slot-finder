@@ -128,9 +128,47 @@ app.get('/comparett', function(req, res){
   // res.render('comparett')
   var arr = req.query.check
   console.log(arr)
-  UserSlots.find({name: arr[1]}, {_id: 0, name: 1, timetable: 1})
+  console.log('heloooooo')
+  UserSlots.find({name: { $in: arr}}, {_id: 0, name: 1, timetable: 1})
     .then((data)=>{
+      var datalen=data.length
+      console.log('helo')
       console.log(data)
+      console.log('hellllo')
+      console.log(datalen)
+      console.log('another')
+      console.log(data[0].timetable)
+      var first = JSON.parse(data[0].timetable)
+      console.log(first)
+      var newarr= []
+      for(var i = 1; i< data.length; i++){
+        var newvar = JSON.parse(data[i].timetable)
+        console.log(newvar)
+        // console.log('workingloop')
+        for(var j = 0; j< 5; j++){
+          newarr[j]=[]
+          for(var k = 0; k<22; k++){
+            if(first[j][k]==1 && newvar[j][k]==1){
+              newarr[j][k]=1
+              // console.log('1')
+            }
+            else{
+              newarr[j][k]=0;
+              // console.log('0')
+            }
+          }
+          // console.log(data[i].timetable[0][8])
+          // if(data[i].timetable)
+        }
+      }
+      console.log('final array')
+      console.log(newarr)
+
+      res.send(newarr)
+
+      // let obj1=data
+      // JSON.stringify(obj1)
+      // console.log(obj1)
     })
 })
 
