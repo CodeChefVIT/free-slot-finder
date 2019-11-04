@@ -99,7 +99,6 @@ app.post('/upload', function(req, res, next) {
     .save()
     .then((data)=>{
       console.log(data)
-      // res.json(data)
       res.render('upload', {results: data})
     })
     .catch((err)=>console.log(err))
@@ -117,9 +116,7 @@ UserSlots.find({}, {_id: 0, name: 1})
   .then((data)=>{
   var newdata=JSON.stringify(data)
   console.log(data)
-  // res.json(data)
   res.render('compare', {data:data})
-
   })
   .catch((err)=>console.log(err))
 })
@@ -132,17 +129,18 @@ app.get('/comparett', function(req, res){
   UserSlots.find({name: { $in: arr}}, {_id: 0, name: 1, timetable: 1})
     .then((data)=>{
       var datalen=data.length
-      console.log('helo')
+      console.log('next log is json data of timetables')
       console.log(data)
-      console.log('hellllo')
+      console.log('next log is the size of json data of timetables (i.e. the number of checkboxes selected)')
       console.log(datalen)
-      console.log('another')
-      console.log(data[0].timetable)
+      console.log('next log is the timetable of first person selected')
+      // console.log(data[0].timetable)
       var first = JSON.parse(data[0].timetable)
       console.log(first)
       var newarr= []
       for(var i = 1; i< data.length; i++){
         var newvar = JSON.parse(data[i].timetable)
+        console.log('next log is the timetable of second person')
         console.log(newvar)
         // console.log('workingloop')
         for(var j = 0; j< 5; j++){
