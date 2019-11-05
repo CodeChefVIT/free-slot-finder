@@ -1,7 +1,8 @@
 <html>
     <head>
-    <title>Compare Timetables</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <title>Compare Timetables</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
     </head>
     <body style="background-color:#74b8cc";>
     
@@ -38,8 +39,7 @@
         .info{
             margin-left: 7%;
             font-family: 'Raleway', sans-serif;
-            font-size: 120%;
-            
+            font-size: 120%;  
         }
     
     </style>
@@ -51,7 +51,7 @@
     </div>
 
 
-    <h5 class="info"><strong>Check the names of people whose timetables you wish to compare:</strong></h5> 
+    <h5 class="info"><strong>Check the names of people whose timetables you wish to compare: <br>(Select at least two names)</strong></h5> 
     
 
     <div id="allnames">
@@ -60,10 +60,7 @@
         <input type="checkbox" value="<%= data[i].name %>" name="check" ><%= data[i].name %><br>
         <% } %>
 
-
-        <!-- <input type="button" onclick="myFunction()" value="Compare"> -->
         <button type="submit" onclick="myFunction()" value="compare" class="btn btn-light" id="uploadbtn">Compare</button>
-        <!-- <input type="text" id="compare" size="50"> -->
 
     </form>
     </div>

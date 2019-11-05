@@ -1,7 +1,8 @@
 <html>
     <head>
-    <title>Compare Timetables</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <title>Compare Timetables</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
     </head>
     <body style="background-color:#74b8cc";>
     
@@ -12,42 +13,53 @@
             align-items:center;
             justify-content:center;
         }
-
-        .main{
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            padding-top:10%;
-            /* padding-left:10%; */
-            font-size:180%;
-        }
     
         #table{
-            margin-top: 5%;
+            margin-top: 2%;
             margin-left: 2%;
             margin-right: 2%;
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            text-align: center;
         }
 
-        h3{
-            margin-top: 5%;
+
+        .info{
             margin-left: 2%;
-            font-family: sans-serif;
+            font-family: 'Raleway', sans-serif;
+            font-size: 130%;  
         }
+
+        #daysrow{
+            height: 25px;
+        }
+
+        #daysrow:hover {background-color: #e1d9fafb;}
+
+
     </style>
 
-<h3>
-    Comparing timetables of
-    <% for(var i=0; i < namearrlen-1; i++) { %>  
-        <%= namearr[i] %>,
-   <% } %> 
-   and <%= namearr[i] %>
-</h3>
+    <div class="jumbotron jumbotron-fluid" id="title">
+        <div class="container" >    
+            <p class="display-4" ><span>Free Slot Finder</span></p>
+        </div>
+    </div>
+
+    <h5 class="info">
+        <strong>
+            Comparing timetables of
+            <% for(var i=0; i < namearrlen-1; i++) { %>  
+                <%= namearr[i] %>,
+           <% } %> 
+           and <%= namearr[i] %>
+        </strong>
+    </h5> 
+
 
 <table id="table" border="1">
             
     <!-- The Row Number 0 -->
-    <tr>
-        <th></th>
+    <tr style="height: 45px;">
+        <th style="width: 100px;">Days/Time</th>
         <th>0800-0830</th>
         <th>0830-0900</th>
         <th>0900-0930</th>
@@ -58,7 +70,6 @@
         <th>1130-1200</th>
         <th>1200-1230</th>
         <th>1230-1300</th>
-
         <th>1400-1430</th>
         <th>1430-1500</th>
         <th>1500-1530</th>
@@ -75,40 +86,40 @@
     </tr>
     <!-- End Row Number 0 -->
     
-    <tr>
-            <td>Monday</td>
+    <tr id="daysrow">
+            <td><strong>Monday</strong></td>
 
             <% for(var i=0; i < 22; i++) { %>  
                      <td><%= Monday[i] %></td>
                 <% } %>       
     </tr>
     
-    <tr>
-            <td>Tuesday</td>
+    <tr id="daysrow">
+            <td><strong>Tuesday</strong></td>
 
             <% for(var i=0; i < 22; i++) { %>  
                 <td><%= Tuesday[i] %></td>
            <% } %>      
     </tr>
     
-    <tr>
-            <td>Wednesday</td>
+    <tr id="daysrow">
+            <td><strong>Wednesday</strong></td>
 
             <% for(var i=0; i < 22; i++) { %>  
                 <td><%= Wednesday[i] %></td>
            <% } %>       
     </tr>
     
-    <tr>
-            <td>Thursday</td>
+    <tr id="daysrow">
+            <td><strong>Thursday</strong></td>
 
             <% for(var i=0; i < 22; i++) { %>  
                 <td><%= Thursday[i] %></td>
            <% } %>    
     </tr>
     
-    <tr>
-            <td>Friday</td>
+    <tr id="daysrow">
+            <td><strong>Friday</strong></td>
 
             <% for(var i=0; i < 22; i++) { %>  
                 <td><%= Friday[i] %></td>

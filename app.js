@@ -133,108 +133,114 @@ app.get('/comparett', function(req, res){
       console.log(data)
       console.log('next log is the size of json data of timetables (i.e. the number of checkboxes selected)')
       console.log(datalen)
-      console.log('next log is the timetable of first person selected')
-      // console.log(data[0].timetable)
-      var first = JSON.parse(data[0].timetable)
-      console.log(first)
-      var newarr= []
-      
-      // loop to initialize every element of newarr to 0
-      for(var j = 0; j< 5; j++){
-        newarr[j]=[]
-        for(var k = 0; k<22; k++){
-          newarr[j][k]=0
-        }
-      }
 
-      // loop to compare each timetable to the first one
-      for(var i = 1; i< data.length; i++){
-        var newvar = JSON.parse(data[i].timetable)
-        console.log('next log is the timetable of person ' + (i+1))
-        console.log(newvar)
+
+      if(datalen>1){
+        console.log('next log is the timetable of first person selected')
+        // console.log(data[0].timetable)
+        var first = JSON.parse(data[0].timetable)
+        console.log(first)
+        var newarr= []
+        
+        // loop to initialize every element of newarr to 0
         for(var j = 0; j< 5; j++){
+          newarr[j]=[]
           for(var k = 0; k<22; k++){
-            if(first[j][k]==1 && newvar[j][k]==1){
-              newarr[j][k]=newarr[j][k]+1
-            }
-            else{
-              newarr[j][k]=0;
-            }
-          }
-        }
-      }
-      console.log('mid array')
-      console.log(newarr)
-
-      // finding the max element of newarr
-      var maxRow = newarr.map(function(row){ return Math.max.apply(Math, row); });
-      var max = Math.max.apply(null, maxRow);
-      console.log(max)
-
-      // loop to replace number<max with 0 in newarr
-      for(var j = 0; j< 5; j++){
-        for(var k = 0; k<22; k++){
-          if(newarr[j][k]!==max){
             newarr[j][k]=0
           }
         }
-      }
 
-      //loop to replace max with 1 in newarr
-      for(var j = 0; j< 5; j++){
-        for(var k = 0; k<22; k++){
-          if(newarr[j][k]===max){
-            newarr[j][k]=1
+        // loop to compare each timetable to the first one
+        for(var i = 1; i< data.length; i++){
+          var newvar = JSON.parse(data[i].timetable)
+          console.log('next log is the timetable of person ' + (i+1))
+          console.log(newvar)
+          for(var j = 0; j< 5; j++){
+            for(var k = 0; k<22; k++){
+              if(first[j][k]==1 && newvar[j][k]==1){
+                newarr[j][k]=newarr[j][k]+1
+              }
+              else{
+                newarr[j][k]=0;
+              }
+            }
           }
         }
-      }
+        console.log('mid array')
+        console.log(newarr)
 
-      console.log('final array')
-      console.log(newarr)
+        // finding the max element of newarr
+        var maxRow = newarr.map(function(row){ return Math.max.apply(Math, row); });
+        var max = Math.max.apply(null, maxRow);
+        console.log(max)
 
-
-      var Monday = newarr[0]
-      console.log('Monday')
-      console.log(Monday)
-
-      var Tuesday = newarr[1]
-      console.log('Tuesday')
-      console.log(Tuesday)
-
-      var Wednesday = newarr[2]
-      console.log('Wednesday')
-      console.log(Wednesday)
-
-      var Thursday = newarr[3]
-      console.log('Thursday')
-      console.log(Thursday)
-
-      var Friday = newarr[4]
-      console.log('Friday')
-      console.log(Friday)
-
-      for(var j = 0; j< 5; j++){
-        for(var k = 0; k<22; k++){
-          if(newarr[j][k]===1){
-            newarr[j][k] = "FREE"
-          }
-          else{
-            newarr[j][k] = "  "
+        // loop to replace number<max with 0 in newarr
+        for(var j = 0; j< 5; j++){
+          for(var k = 0; k<22; k++){
+            if(newarr[j][k]!==max){
+              newarr[j][k]=0
+            }
           }
         }
+
+        //loop to replace max with 1 in newarr
+        for(var j = 0; j< 5; j++){
+          for(var k = 0; k<22; k++){
+            if(newarr[j][k]===max){
+              newarr[j][k]=1
+            }
+          }
+        }
+
+        console.log('final array')
+        console.log(newarr)
+
+
+        var Monday = newarr[0]
+        console.log('Monday')
+        console.log(Monday)
+
+        var Tuesday = newarr[1]
+        console.log('Tuesday')
+        console.log(Tuesday)
+
+        var Wednesday = newarr[2]
+        console.log('Wednesday')
+        console.log(Wednesday)
+
+        var Thursday = newarr[3]
+        console.log('Thursday')
+        console.log(Thursday)
+
+        var Friday = newarr[4]
+        console.log('Friday')
+        console.log(Friday)
+
+        for(var j = 0; j< 5; j++){
+          for(var k = 0; k<22; k++){
+            if(newarr[j][k]===1){
+              newarr[j][k] = "FREE"
+            }
+            else{
+              newarr[j][k] = "  "
+            }
+          }
+        }
+
+        var namearr = []
+        for(var i=0; i<datalen; i++){
+          namearr[i]=data[i].name
+          console.log(namearr)
+        }
+        var namearrlen=namearr.length;
+
+        res.render('comparett', {Monday: Monday, Tuesday: Tuesday, Wednesday: Wednesday, Thursday: Thursday, Friday: Friday, namearr: namearr, namearrlen: namearrlen})
       }
-
-      var namearr = []
-      for(var i=0; i<datalen; i++){
-        namearr[i]=data[i].name
-        console.log(namearr)
+      else{
+        res.redirect('/compare')
       }
-      var namearrlen=namearr.length;
+      
 
-
-      res.render('comparett', {Monday: Monday, Tuesday: Tuesday, Wednesday: Wednesday, Thursday: Thursday, Friday: Friday, namearr: namearr, namearrlen: namearrlen})
-
-      // res.render('comparett', {newarr: newarr})
     })
 
 
