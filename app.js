@@ -224,8 +224,15 @@ app.get('/comparett', function(req, res){
         }
       }
 
+      var namearr = []
+      for(var i=0; i<datalen; i++){
+        namearr[i]=data[i].name
+        console.log(namearr)
+      }
+      var namearrlen=namearr.length;
 
-      res.render('comparett', {Monday: Monday, Tuesday: Tuesday, Wednesday: Wednesday, Thursday: Thursday, Friday: Friday})
+
+      res.render('comparett', {Monday: Monday, Tuesday: Tuesday, Wednesday: Wednesday, Thursday: Thursday, Friday: Friday, namearr: namearr, namearrlen: namearrlen})
 
       // res.render('comparett', {newarr: newarr})
     })

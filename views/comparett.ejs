@@ -23,14 +23,25 @@
         }
     
         #table{
-            margin-top: 18%;
+            margin-top: 5%;
             margin-left: 2%;
             margin-right: 2%;
+        }
 
+        h3{
+            margin-top: 5%;
+            margin-left: 2%;
+            font-family: sans-serif;
         }
     </style>
 
-
+<h3>
+    Comparing timetables of
+    <% for(var i=0; i < namearrlen-1; i++) { %>  
+        <%= namearr[i] %>,
+   <% } %> 
+   and <%= namearr[i] %>
+</h3>
 
 <table id="table" border="1">
             
