@@ -122,12 +122,12 @@ UserSlots.find({}, {_id: 0, name: 1})
 })
 
 app.get('/comparett', function(req, res){
-  // res.render('comparett')
   var arr = req.query.check
   console.log(arr)
   console.log('heloooooo')
   UserSlots.find({name: { $in: arr}}, {_id: 0, name: 1, timetable: 1})
     .then((data)=>{
+
       var datalen=data.length
       console.log('next log is json data of timetables')
       console.log(data)
@@ -139,64 +139,91 @@ app.get('/comparett', function(req, res){
       console.log(first)
       var newarr= []
       
+      // loop to initialize every element of newarr to 0
       for(var j = 0; j< 5; j++){
         newarr[j]=[]
         for(var k = 0; k<22; k++){
           newarr[j][k]=0
         }
-        // console.log(data[i].timetable[0][8])
-        // if(data[i].timetable)
       }
 
+      // loop to compare each timetable to the first one
       for(var i = 1; i< data.length; i++){
         var newvar = JSON.parse(data[i].timetable)
         console.log('next log is the timetable of person ' + (i+1))
         console.log(newvar)
-        // console.log('workingloop')
         for(var j = 0; j< 5; j++){
-          // newarr[j]=[]
           for(var k = 0; k<22; k++){
             if(first[j][k]==1 && newvar[j][k]==1){
               newarr[j][k]=newarr[j][k]+1
             }
             else{
               newarr[j][k]=0;
-              // console.log('0')
             }
           }
-          // console.log(data[i].timetable[0][8])
-          // if(data[i].timetable)
         }
       }
       console.log('mid array')
       console.log(newarr)
 
+      // finding the max element of newarr
       var maxRow = newarr.map(function(row){ return Math.max.apply(Math, row); });
       var max = Math.max.apply(null, maxRow);
-
       console.log(max)
 
+      // loop to replace number<max with 0 in newarr
       for(var j = 0; j< 5; j++){
-        // newarr[j]=[]
         for(var k = 0; k<22; k++){
           if(newarr[j][k]!==max){
             newarr[j][k]=0
           }
         }
-        // console.log(data[i].timetable[0][8])
-        // if(data[i].timetable)
+      }
+
+      //loop to replace max with 1 in newarr
+      for(var j = 0; j< 5; j++){
+        for(var k = 0; k<22; k++){
+          if(newarr[j][k]===max){
+            newarr[j][k]=1
+          }
+        }
       }
 
       console.log('final array')
       console.log(newarr)
 
-      res.send(newarr)
 
-      // let obj1=data
-      // JSON.stringify(obj1)
-      // console.log(obj1)
+      var Monday = newarr[0]
+      console.log('Monday')
+      console.log(Monday)
+
+      var Tuesday = newarr[1]
+      console.log('Tuesday')
+      console.log(Tuesday)
+
+      var Wednesday = newarr[2]
+      console.log('Wednesday')
+      console.log(Wednesday)
+
+      var Thursday = newarr[3]
+      console.log('Thursday')
+      console.log(Thursday)
+
+      var Friday = newarr[4]
+      console.log('Friday')
+      console.log(Friday)
+
+      
+
+      res.render('comparett', {Monday: Monday, Tuesday: Tuesday, Wednesday: Wednesday, Thursday: Thursday, Friday: Friday})
+
+      // res.render('comparett', {newarr: newarr})
     })
+
+
 })
+
+
 
 // Set port number
 const PORT = process.env.PORT || 3000;
