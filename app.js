@@ -213,7 +213,17 @@ app.get('/comparett', function(req, res){
       console.log('Friday')
       console.log(Friday)
 
-      
+      for(var j = 0; j< 5; j++){
+        for(var k = 0; k<22; k++){
+          if(newarr[j][k]===1){
+            newarr[j][k] = "FREE"
+          }
+          else{
+            newarr[j][k] = "  "
+          }
+        }
+      }
+
 
       res.render('comparett', {Monday: Monday, Tuesday: Tuesday, Wednesday: Wednesday, Thursday: Thursday, Friday: Friday})
 

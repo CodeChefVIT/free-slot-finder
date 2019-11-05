@@ -22,16 +22,90 @@
             font-size:180%;
         }
     
+        #table{
+            margin-top: 18%;
+            margin-left: 2%;
+            margin-right: 2%;
+
+        }
     </style>
 
 
-Monday: <%= Monday %> <br>
-Tuesday: <%= Tuesday %> <br>  
-Wednesday: <%= Wednesday %> <br>
-Thursday: <%= Thursday %> <br>
-Friday: <%= Friday %> <br>
 
-       
+<table id="table" border="1">
+            
+    <!-- The Row Number 0 -->
+    <tr>
+        <th></th>
+        <th>0800-0830</th>
+        <th>0830-0900</th>
+        <th>0900-0930</th>
+        <th>0930-1000</th>
+        <th>1000-1030</th>
+        <th>1030-1100</th>
+        <th>1100-1130</th>
+        <th>1130-1200</th>
+        <th>1200-1230</th>
+        <th>1230-1300</th>
+
+        <th>1400-1430</th>
+        <th>1430-1500</th>
+        <th>1500-1530</th>
+        <th>1530-1600</th>
+        <th>1600-1630</th>
+        <th>1630-1700</th>
+        <th>1700-1730</th>
+        <th>1730-1800</th>
+        <th>1800-1830</th>
+        <th>1830-1900</th>
+        <th>1900-1930</th>
+        <th>1930-2000</th>
+        
+    </tr>
+    <!-- End Row Number 0 -->
+    
+    <tr>
+            <td>Monday</td>
+
+            <% for(var i=0; i < 22; i++) { %>  
+                     <td><%= Monday[i] %></td>
+                <% } %>       
+    </tr>
+    
+    <tr>
+            <td>Tuesday</td>
+
+            <% for(var i=0; i < 22; i++) { %>  
+                <td><%= Tuesday[i] %></td>
+           <% } %>      
+    </tr>
+    
+    <tr>
+            <td>Wednesday</td>
+
+            <% for(var i=0; i < 22; i++) { %>  
+                <td><%= Wednesday[i] %></td>
+           <% } %>       
+    </tr>
+    
+    <tr>
+            <td>Thursday</td>
+
+            <% for(var i=0; i < 22; i++) { %>  
+                <td><%= Thursday[i] %></td>
+           <% } %>    
+    </tr>
+    
+    <tr>
+            <td>Friday</td>
+
+            <% for(var i=0; i < 22; i++) { %>  
+                <td><%= Friday[i] %></td>
+           <% } %>        
+    </tr>
+    
+</table>
+
 
 
     </body>
