@@ -21,19 +21,52 @@
             /* padding-left:10%; */
             font-size:180%;
         }
+
+        #allnames{
+            margin-top: 1%;
+            margin-left: 7%;
+            /* font-family: serif; */
+            font-family: 'Raleway', sans-serif;
+            font-size: 120%;
+        }
+
+        #uploadbtn{
+            margin-top:1%;
+            /* margin-left:%; */
+        }
+
+        .info{
+            margin-left: 7%;
+            font-family: 'Raleway', sans-serif;
+            font-size: 120%;
+        }
     
     </style>
 
+    <div class="jumbotron jumbotron-fluid" id="title">
+        <div class="container" >    
+            <p class="display-4" ><span>Free Slot Finder</span></p>
+        </div>
+    </div>
+
+    <div class="info">
+        <p>Check the names of people whose timetables you wish to compare:</p>
+    </div>
+    
+
+    <div id="allnames">
     <form method="get" action="/comparett">
         <% for(var i=0; i < data.length; i++){ %>
-        <input type="checkbox" value="<%= data[i].name %>" name="check"><%= data[i].name %><br>
+        <input type="checkbox" value="<%= data[i].name %>" name="check" ><%= data[i].name %><br>
         <% } %>
+
+
         <!-- <input type="button" onclick="myFunction()" value="Compare"> -->
-        <button type="submit" onclick="myFunction()" value="compare">Compare</button>
-        <input type="text" id="compare" size="50">
+        <button type="submit" onclick="myFunction()" value="compare" class="btn btn-light" id="uploadbtn">Compare</button>
+        <!-- <input type="text" id="compare" size="50"> -->
 
     </form>
-
+    </div>
     <script>
         function myFunction() {
             var check = document.forms[0];
