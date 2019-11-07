@@ -74,6 +74,7 @@ app.post('/upload', function(req, res, next) {
 	if (err) 
 		return res.json({err}).status(400)
   
+    
     console.log(req.file)
     
   let filepath = __dirname + "/public/uploads/" + req.file.filename
@@ -112,14 +113,14 @@ app.post('/upload', function(req, res, next) {
 
 
 app.get('/compare', function(req, res){
-UserSlots.find({}, {_id: 0, name: 1})
-  .then((data)=>{
-  var newdata=JSON.stringify(data)
-  console.log(data)
-  res.render('compare', {data:data})
+  UserSlots.find({}, {_id: 0, name: 1})
+    .then((data)=>{
+    var newdata=JSON.stringify(data)
+    console.log(data)
+    res.render('compare', {data:data})
+    })
+    .catch((err)=>console.log(err))
   })
-  .catch((err)=>console.log(err))
-})
 
 app.get('/comparett', function(req, res){
   var arr = req.query.check
@@ -239,14 +240,9 @@ app.get('/comparett', function(req, res){
       else{
         res.redirect('/compare')
       }
-      
 
     })
-
-
 })
-
-
 
 // Set port number
 const PORT = process.env.PORT || 3000;
