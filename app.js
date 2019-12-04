@@ -217,45 +217,6 @@ app.get('/comparett', function(req, res){
         console.log('Friday')
         console.log(Friday)
 
-        var Monday1 = Monday.slice(0,11)
-        console.log('MondayMorning')
-        console.log(Monday1)
-
-        var Monday2 = Monday.slice(11,)
-        console.log('MondayAfternoon')
-        console.log(Monday2)
-
-        var Tuesday1 = Tuesday.slice(0,11)
-        console.log('TuesdayMorning')
-        console.log(Tuesday1)
-
-        var Tuesday2 = Tuesday.slice(11,)
-        console.log('TuesdayAfternoon')
-        console.log(Tuesday2)
-
-        var Wednesday1 = Wednesday.slice(0,11)
-        console.log('WednesdayMorning')
-        console.log(Wednesday1)
-
-        var Wednesday2 = Wednesday.slice(11,)
-        console.log('WednesdayAfternoon')
-        console.log(Wednesday2)
-
-        var Thursday1 = Thursday.slice(0,11)
-        console.log('ThursdayMorning')
-        console.log(Thursday1)
-
-        var Thursday2 = Thursday.slice(11,)
-        console.log('ThursdayAfternoon')
-        console.log(Thursday2)
-
-        var Friday1 = Friday.slice(0,11)
-        console.log('FridayMorning')
-        console.log(Friday1)
-
-        var Friday2 = Friday.slice(11,)
-        console.log('FridayAfternoon')
-        console.log(Friday2)
 
         for(var j = 0; j< 5; j++){
           for(var k = 0; k<22; k++){
@@ -275,7 +236,7 @@ app.get('/comparett', function(req, res){
         }
         var namearrlen=namearr.length;
 
-        res.render('comparett', {Monday: Monday, Tuesday: Tuesday, Wednesday: Wednesday, Thursday: Thursday, Friday: Friday, namearr: namearr, namearrlen: namearrlen, Monday1: Monday1, Tuesday1: Tuesday1, Wednesday1: Wednesday1, Thursday1: Thursday1, Friday1: Friday1, Monday2: Monday2, Tuesday2: Tuesday2, Wednesday2: Wednesday2, Thursday2: Thursday2, Friday2: Friday2})
+        res.render('comparett', {Monday: Monday, Tuesday: Tuesday, Wednesday: Wednesday, Thursday: Thursday, Friday: Friday, namearr: namearr, namearrlen: namearrlen})
       }
       else{
         res.redirect('/compare')
