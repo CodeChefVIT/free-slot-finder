@@ -151,13 +151,13 @@ for i in range(0,10,2):
         f[k][6]=1
     if slot_state[i][3]==0 and slot_state[i+1][4]==0:
         f[k][7]=1    
-    if slot_state[i][4]==0 and slot_state[i+1][4] and slot_state[i+1][5]==0:
+    if slot_state[i][4]==0 and slot_state[i+1][4]==0 and slot_state[i+1][5]==0:
         f[k][8]=1
     if slot_state[i][4]==0 and slot_state[i+1][5]==0:
         f[k][9]=1
     if slot_state[i][6]==0 and slot_state[i+1][6]==0:
         f[k][10]=1
-    if slot_state[i][6]==0 and slot_state[i+1][6]==0 and slot_state[i+1][7]:
+    if slot_state[i][6]==0 and slot_state[i+1][6]==0 and slot_state[i+1][7]==0:
         f[k][11]=1
     if slot_state[i][7]==0 and slot_state[i+1][7]==0:
         f[k][12]=1
@@ -165,13 +165,13 @@ for i in range(0,10,2):
         f[k][13]=1
     if slot_state[i][8]==0 and slot_state[i+1][8]==0:
         f[k][14]=1
-    if slot_state[i][8]==0 and slot_state[i+1][8]==0 and slot_state[i+1][9]:
+    if slot_state[i][8]==0 and slot_state[i+1][8]==0 and slot_state[i+1][9]==0:
         f[k][15]=1
     if slot_state[i][9]==0 and slot_state[i+1][9]==0:
         f[k][16]=1
     if slot_state[i][9]==0 and slot_state[i+1][10]==0:
         f[k][17]=1
-    if slot_state[i][10]==0 and slot_state[i+1][10]==0 and slot_state[i+1][11]:
+    if slot_state[i][10]==0 and slot_state[i+1][10]==0 and slot_state[i+1][11]==0:
         f[k][18]=1
     if slot_state[i][10]==0 and slot_state[i+1][11]==0:
         f[k][19]=1
