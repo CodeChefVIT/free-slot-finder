@@ -269,6 +269,7 @@ app.get('/comparett', function(req, res){
     })
 })
 
+app.use("/", require("./controllers/appcontrollers"))
 // Set port number
 const PORT = process.env.PORT || 3000;
 
