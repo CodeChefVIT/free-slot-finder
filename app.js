@@ -5,6 +5,9 @@ var mongoose = require('mongoose');
 const express = require('express');
 var bodyParser = require('body-parser');
 const {PythonShell} = require("python-shell");
+const dotenv = require('dotenv')
+
+dotenv.config();
 
 const app = express();
 
@@ -42,12 +45,23 @@ function checkFileType(file, cb){
   const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
   // Check mime
   const mimetype = filetypes.test(file.mimetype);
+  const size = file.size;
   // Condition check
-  if(mimetype && extname){
-    return cb(null,true);
+  if(size/1024*1024 < 5){
+    cb(null,true);
+    return
   } else {
-    cb('Error: Images Only!');
+    cb('Error: Size limit reached!', null);
+    return
   }
+  if(mimetype && extname){
+    cb(null,true);
+    return
+  } else {
+    cb('Error: Images Only!', null);
+    return
+  }
+ 
 }
 
 app.get("/", function(req, res) {
@@ -76,39 +90,49 @@ app.post('/upload', function(req, res, next) {
   
     
     console.log(req.file)
+    checkFileType(req.file,function(err, result){
+      if(err){
+        console.log('debug')
+
+        return res.json({err})
+      }
+      let filepath = __dirname + "/public/uploads/" + req.file.filename
+      let newfilepath = __dirname + "/public/uploads/" + req.body.text 
+      
+      // Rename already uploaded file from random name to name given in form
+      fs.rename(filepath, newfilepath, (err) => {
+        if (err) return res.json({err});
+        // console.log('Rename complete!');
+        
+      // Options for running python script  
+      var options = {
+        mode: 'text',
+        args: [newfilepath]// pass arguments to the script here
+      };
     
-  let filepath = __dirname + "/public/uploads/" + req.file.filename
-  let newfilepath = __dirname + "/public/uploads/" + req.body.text 
-  
-  // Rename already uploaded file from random name to name given in form
-  fs.rename(filepath, newfilepath, (err) => {
-    if (err) throw err;
-    // console.log('Rename complete!');
-    });
-
-  // Options for running python script  
-  var options = {
-    mode: 'text',
-    args: [newfilepath]// pass arguments to the script here
-  };
-
-  PythonShell.run('final.py', options, function (err, results) {
-    if (err) throw err;
-    console.log(results);
-
-    new UserSlots({'name': req.body.text, 'timetable': results})
-    .save()
-    .then((data)=>{
-      console.log(data)
-      res.render('upload', {results: data})
+      PythonShell.run('final.py', options, function (err, results) {
+        if (err) res.json({err});
+        console.log(results);
+    
+        new UserSlots({'name': req.body.text, 'timetable': results})
+        .save()
+        .then((data)=>{
+          console.log(data)
+          res.render('upload', {results: data})
+        })
+        .catch((err)=>res.json({err}));
+    
+        // create({'name': newfilepath, 'timetable': results})
+        // .then((d) => res.json(d))
+        // .catch(err => console.log(err));
+      })
+        });
+    
     })
-    .catch((err)=>console.log(err))
 
-    // create({'name': newfilepath, 'timetable': results})
-    // .then((d) => res.json(d))
-    // .catch(err => console.log(err));
-  })
-})
+    })
+    
+
 })
 
 

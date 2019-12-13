@@ -3,3 +3,4 @@ node_modules
 background.py
 /public/uploads/*
 controllers
+.env

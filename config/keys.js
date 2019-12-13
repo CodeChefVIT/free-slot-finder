@@ -1,4 +1,7 @@
-dbPassword = 'mongodb+srv://Rajat:dpsbplsthbst@cluster0-i5ukv.mongodb.net/test?retryWrites=true&w=majority';
+// const process = require('process')
+
+dbPassword = process.env.DBURI
+console.log(dbPassword);
 
 module.exports = {
     mongoURI: dbPassword
