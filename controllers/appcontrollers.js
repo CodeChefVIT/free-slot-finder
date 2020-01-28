@@ -4,7 +4,7 @@ const UserSlots = require('../model/UserSlots');
 router.get("/users/:search", (req, res, next) => {
     let search = req.params.search.toLowerCase();
     let reg = new RegExp(search)
-    UserSlots.findOne({name: {$regex: reg}})
+    UserSlots.find({name: {$regex: reg}})
     .then(user => {
         res.json(user)
     }).catch(err => {
