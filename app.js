@@ -47,13 +47,13 @@ function checkFileType(file, cb){
   const mimetype = filetypes.test(file.mimetype);
   const size = file.size;
   // Condition check
-  if(size/1024*1024 < 5){
-    cb(null,true);
-    return
-  } else {
-    cb('Error: Size limit reached!', null);
-    return
-  }
+  // if(size/1024*1024 < 5){
+  //   cb(null,true);
+  //   return
+  // } else {
+  //   cb('Error: Size limit reached!', null);
+  //   return
+  // }
   if(mimetype && extname){
     cb(null,true);
     return
