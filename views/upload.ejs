@@ -2,6 +2,7 @@
     <head>
     <title>Timetable Uploaded</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
     </head>
     <body style="background-color:#74b8cc";>
     
@@ -18,10 +19,19 @@
             align-items:center;
             justify-content:center;
             padding-top:10%;
-            /* padding-left:10%; */
             font-size:180%;
+            font-family: 'Raleway', sans-serif;
         }
-    
+
+        h5{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding-top: 20px;
+            font-family: 'Raleway', sans-serif;
+
+        }
+
     </style>
 
     <div class="jumbotron jumbotron-fluid" id="title">
@@ -31,18 +41,15 @@
     </div>
 
     <div class="main">
-    Your free slots are: 
-    <br>
-    <table>
-            <% for(var i=0; i < results.length; i++) { %>  
-            <tr>
-                 <td><%= results[i] %></td>
-                 </tr>
-            <% } %>
-            </table>
     
-  
+        <h2>Congratulations! Your timetable has been uploaded.</h2>
+
+    <!-- </div>
+        <h5><a href="/compare">Click here </a>if you wish to compare free slots</h5>
+    <div> -->
+        
     </div>
-   
+    <script src="/assets/user-list.js"></script> 
+
     </body>
 </html>

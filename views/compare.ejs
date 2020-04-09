@@ -1,0 +1,84 @@
+<html>
+    <head>
+        <title>Compare Timetables</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    </head>
+    <body style="background-color:#74b8cc";>
+    
+    <style type="text/css">
+
+        #title{
+            display:grid;
+            align-items:center;
+            justify-content:center;
+        }
+
+        .main{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding-top:10%;
+            /* padding-left:10%; */
+            font-size:180%;
+        }
+
+        #allnames{
+            margin-top: 1%;
+            margin-left: 7%;
+            /* font-family: serif; */
+            font-family: 'Raleway', sans-serif;
+            font-size: 120%;
+        }
+
+        #uploadbtn{
+            margin-top:1%;
+            /* margin-left:%; */
+        }
+
+        .info{
+            margin-left: 7%;
+            font-family: 'Raleway', sans-serif;
+            font-size: 120%;  
+        }
+    
+    </style>
+
+    <div class="jumbotron jumbotron-fluid" id="title">
+        <div class="container" >    
+            <p class="display-4" ><span>Free Slot Finder</span></p>
+        </div>
+    </div>
+
+
+    <h5 class="info"><strong>Check the names of people whose timetables you wish to compare: <br>(Select at least two names)</strong></h5> 
+    
+
+    <div id="allnames">
+    <form method="get" action="/comparett">
+        <% for(var i=0; i < data.length; i++){ %>
+        <input type="checkbox" value="<%= data[i].name %>" name="check" ><%= data[i].name %><br>
+        <% } %>
+
+        <button type="submit" onclick="myFunction()" value="compare" class="btn btn-light" id="uploadbtn">Compare</button>
+
+    </form>
+    </div>
+    <script>
+        function myFunction() {
+            var check = document.forms[0];
+            var txt = "";
+            var i;
+            for (i = 0; i < check.length; i++) {
+            if (check[i].checked) {
+                txt = txt + check[i].value + " ";
+            }
+            }
+
+            document.getElementById("compare").value = " " + txt;
+            // alert(txt)
+        }
+    </script>
+      
+    </body>
+</html>

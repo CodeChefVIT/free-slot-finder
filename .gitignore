@@ -1,4 +1,5 @@
 node_modules
 .vscode
-tt.png
 background.py
+/public/uploads/*
+.env
