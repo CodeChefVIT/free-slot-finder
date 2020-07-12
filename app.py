@@ -199,6 +199,8 @@ def main(myPath):
     # os.remove("ttpxt.png")
     # print(json.dumps(final_list))
     l = []
+    mor=0
+    eve=0
     free_slot_dict = {}
     i = 0
     for y in final_list:
@@ -240,36 +242,46 @@ def main(myPath):
             if (i % 13 == 0):
                 # print("8:00-9:00 ")
                 l.append("8:00-9:00")
+                mor+=1
             if (i % 13 == 1):
                 # print("9:00-10:00 ")
                 l.append("9:00-10:00 ")
+                mor+=1
             if (i % 13 == 2):
                 # print("10:00-11:00 ")
                 l.append("10:00-11:00 ")
+                mor+=1
             if (i % 13 == 3):
                 # print("11:00-12:00 ")
                 l.append("11:00-12:00 ")
+                mor+=1
             if (i % 13 == 4):
                 # print("12:00-13:00 ")
                 l.append("12:00-13:00 ")
+                mor+=1
             if (i % 13 == 5):
                 # print("13:00-14:00 ")
                 l.append("13:00-14:00 ")
             if (i % 13 == 6):
                 # print("14:00-15:00 ")
                 l.append("14:00-15:00 ")
+                eve+=1
             if (i % 13 == 7):
                 # print("15:00-16:00 ")
                 l.append("15:00-16:00 ")
+                eve+=1
             if (i % 13 == 8):
                 # print("16:00-17:00 ")
                 l.append("16:00-17:00 ")
+                eve+=1
             if (i % 13 == 9):
                 # print("17:00-18:00 ")
                 l.append("17:00-18:00 ")
+                eve+=1
             if (i % 13 == 10):
                 # print("18:00-18:50 ")
                 l.append("18:00-18:50 ")
+                eve+=1
             if (i % 13 == 11):
                 # print("18:50-19:00 ")
                 l.append("18:50-19:00 ")
@@ -283,9 +295,17 @@ def main(myPath):
             break
         i = i + 1
 
-# print(final_list)
-# print(f)
-# print(free_slot_dict)
+    # print(final_list)
+    # print(f)
+    # print(free_slot_dict)
     #print(json.dumps(free_slot_dict))
+    free_slot_dict["Free slots in"] = "morning" if mor>eve else "evening"
     return(json.dumps(free_slot_dict))
-# x = input("\nGive any input to continue...")
+
+@app.route('/')
+def index():
+    return '<h2>Please enter file path in the URL</h2>'
+
+if __name__=="__main__":
+    app.run(debug=True)
+
