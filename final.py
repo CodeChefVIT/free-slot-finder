@@ -22,7 +22,7 @@ cd = [0,0]
 
 #tt = Image.open(sys.argv[1]).rotate(180)
 #tt = Image.open("ttpxt.png")
-tt = Image.open("D:/PROJECTS/ML_Codechef/FFDS/tt1.png").rotate(180)
+tt = Image.open("ttfs.png").rotate(180)
 
 #print(datetime.datetime.time(datetime.datetime.now()))
 
