@@ -1,11 +1,19 @@
 class Team {
-  constructor(teamName){
-    this.teamName = teamName;
+  constructor(name){
+    this.name = name;
   }
 }
 
 class UI{
   addTeamToList(team){
+    const list = document.getElementById("team-list");
+    const row = document.createElement("ul");
+
+    row.innerHTML = `
+    <li>${team.name}</li> `;
+    
+    list.appendChild(row);
+      
 
   }
   showAlert(message, teamName){
@@ -15,3 +23,12 @@ class UI{
 
   }
 }
+
+document.getElementById("team-form").addEventListener("submit",function(e){
+  e.preventDefault();
+  const teamName =document.getElementById("team-name").value;
+  const team = new Team(teamName);
+  const ui =new UI();
+
+  ui.addTeamToList(team);
+})
