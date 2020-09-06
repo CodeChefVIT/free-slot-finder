@@ -1,19 +1,22 @@
+let i = 0
 class Team {
-  constructor(name){
+  constructor(teamNo, name){
+    this.teamNo = teamNo;
     this.name = name;
+  }
+  addTeamMember(){
+    
   }
 }
 
 class UI{
   addTeamToList(team){
     const list = document.getElementById("team-list");
-    const row = document.createElement("ul");
+    const row = document.createElement("li");
 
-    row.innerHTML = `
-    <li>${team.name}</li> `;
+    row.innerHTML =`<span class="icon-team"><i class="fas fa-users"></i> </span>${team.name} <span class="add-mem-btn $"><i class="fas fa-plus"></i></span>`;
     
-    list.appendChild(row);
-      
+    list.appendChild(row); 
 
   }
   showAlert(message, teamName){
@@ -24,11 +27,19 @@ class UI{
   }
 }
 
+//create a team and add to ui
 document.getElementById("team-form").addEventListener("submit",function(e){
   e.preventDefault();
   const teamName =document.getElementById("team-name").value;
-  const team = new Team(teamName);
+  i++;
+  const team = new Team(i,teamName);
   const ui =new UI();
 
   ui.addTeamToList(team);
+})
+
+//delete a team and remove from ui
+document.getElementById("team-list").addEventListener("click", function(e){
+  e.preventDefault();
+  
 })
