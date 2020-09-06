@@ -257,13 +257,33 @@ html,body{
     background-position: top left;
     background-repeat: no-repeat;
   }
-  
+  .navbar {
+    color: white;
+  }
   svg{
     color: black !important;
   }
+  
 
-}
-#btn-add-team{
-  background-color: #e9ecef;
-  border: 1px solid #ced4da;
+  #team-list{
+    padding: 0;
+    li{
+      height: max-content;
+      list-style: none;
+    }
+    li:nth-of-type(2n+1){
+      background-color: white;
+    }
+    .icon-team{
+      width: 40px;
+      height: 38px;
+      display: inline-block;
+    }
+  }
+  
+
+  #btn-add-team{
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+  }
 }
