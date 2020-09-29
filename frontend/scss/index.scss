@@ -282,8 +282,12 @@ html,body{
   }
   
 
-  #btn-add-team{
+  .add-btn{
     background-color: #e9ecef;
     border: 1px solid #ced4da;
+  }
+  .team-name{
+    width: 20vw;
+    overflow-x: hidden;
   }
 }
