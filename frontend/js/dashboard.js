@@ -10,13 +10,6 @@ class Team {
     this.teamName = teamName;
     this.teamMembers=[]
   };
-  addTeamMember(target){
-
-    
-  }
-  deleteTeamMember(){
-
-  }
 }
 class Teams{
   constructor(){
@@ -52,7 +45,7 @@ class UI{
         <input type="text" class="form-control"  placeholder="New Member">
         <div class="input-group-append ">
           <button class="btn add-btn add-team-btn" type="submit" >Add</button>
-          <button class="btn" type="submit" i><i class="fas fa-trash"></i></button>
+          <button class="btn del-team" type="submit" i><i class="fas fa-trash"></i></button>
         </div>
       </div>
     </form>`
@@ -65,8 +58,9 @@ class UI{
         <div>${teamArr[i].teamMembers[j].memName}</div>
         <div style="flex:1;"></div>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" checked>
+          <input class="form-check-input" type="checkbox" value="${j}" name="ugu${j} "checked >
         </div>
+        <button class="btn del-mem" type="submit" i><i class="fas fa-trash"></i></button>
       </div>`;
       }
       teamsUI.appendChild(teamBlock);
@@ -88,12 +82,39 @@ const ui = new UI();
 document.querySelector("#btn-add-teams").addEventListener("click",function(e){
   e.preventDefault();
   accountName.addTeam();
+
+
+
+
+
+  var raw = {
+        'teamName': 'First team'
+    };
+    
+    var requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-type' : 'application/json'
+      },
+      body: JSON.stringify(raw) ,
+      redirect: 'follow'
+    };
+    
+    fetch("https://free-slot-finder-app.herokuapp.com/team/add", requestOptions)
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+
+
+
+
+
   ui.dispTeams(accountName);
 
 })
 document.querySelector("#team-list").addEventListener("click",function(e){
   e.preventDefault();
-  let clickedElementSuperParent = e.target.parentElement.parentElement.parentElement
+  let clickedTeamSuperParent = e.target.parentElement.parentElement.parentElement
   let clickedTeamNo = e.target.parentElement.parentElement.parentElement.className
   if(e.target.className == "btn add-btn add-team-btn"){
     let memNam = e.target.parentElement.previousElementSibling.value;
@@ -102,7 +123,7 @@ document.querySelector("#team-list").addEventListener("click",function(e){
     accountName.team[clickedTeamNo].teamMembers.push(tempMem )
     ui.dispTeams(accountName);
   }
-  // if (e.target.)
+  
 
 })
 
