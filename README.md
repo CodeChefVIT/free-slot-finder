@@ -23,13 +23,9 @@
 - Auto deletion of teams at the end of the semester.
 
 
-
-
-
 ## Screenshots
 <img src="/assets/screenshots/Screenshot 2020-06-21 at 4.11.37 PM.png" alt="Project Screenshots">
 
-```
 
 ## Contributors
 - <a href="https://github.com/shashtag">Shashwat Gupta</a>

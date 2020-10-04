@@ -19,6 +19,8 @@ def dist(f, t):
 def unimportant(rgb):
     return (rgb[0] <= 200 and rgb[1] <= 200 and rgb[2] <= 200) or (rgb[1] > 200 and rgb[2] > 200 and rgb[2] >= rgb[1])
 
+cd = [0, 0]
+
 def updateNPCoord():
     global cd
     if cd[1] < 12:
@@ -26,19 +28,18 @@ def updateNPCoord():
     else:
         cd = [cd[0] + 1, 0]
 
-cd = [0, 0]
+
 
 
 @app.route('/<path:myPath>')
 def main(myPath):
-    tt = Image.open(myPath).rotate(180)
+
 
     slot_state = np.zeros((14, 13))
     hops = []
     final_list = []
 
-
-
+    tt = Image.open(myPath).rotate(180)
     # tt = Image.open(sys.argv[1]).rotate(180)
     # tt = Image.open("ttpxt.png")
     #tt = Image.open("ttpxt.png").rotate(180)
@@ -198,7 +199,7 @@ def main(myPath):
     # print(datetime.datetime.time(datetime.datetime.now()))
     # os.remove("ttpxt.png")
     # print(json.dumps(final_list))
-    l = []
+    """l = []
     mor=0
     eve=0
     free_slot_dict = {}
@@ -294,13 +295,54 @@ def main(myPath):
             free_slot_dict["Friday"] = l
             break
         i = i + 1
-
+    
     # print(final_list)
     # print(f)
     # print(free_slot_dict)
     #print(json.dumps(free_slot_dict))
     free_slot_dict["Free slots in"] = "morning" if mor>eve else "evening"
-    return(json.dumps(free_slot_dict))
+    """
+    days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    free_s = {}
+    l = []
+    d = 0
+    for i in f:
+        if i[0] == 1 and i[1] == 1:
+            l.append("8:00-9:00")
+        if i[2] == 1 and i[3] == 1:
+            l.append("9:00-10:00")
+        if i[2] == 0 and i[3] == 1:
+            l.append("9:30-10:00")
+        if i[4] == 1 and i[5] == 1:
+            l.append("10:00-11:00")
+        if i[6] == 1 and i[7] == 1:
+            l.append("11:00-12:00")
+        if i[6] == 0 and i[6] == 1:
+            l.append("11:30-12:00")
+        if i[8] == 1 and i[9] == 1:
+            l.append("12:00-13:00")
+        if i[10] == 1 and i[11] == 1:
+            l.append("14:00-15:00")
+        if i[12] == 1 and i[13] == 1:
+            l.append("15:00-16:00")
+        if i[12] == 0 and i[13] == 1:
+            l.append("15:30-16:00")
+        if i[14] == 1 and i[15] == 1:
+            l.append("16:00-17:00")
+        if i[16] == 1 and i[17] == 1:
+            l.append("17:00-18:00")
+        if i[16] == 0 and i[17] == 1:
+            l.append("17:30-18:00")
+        if i[18] == 1 and i[19] == 1:
+            l.append("18:00-19:00")
+        if i[20] == 1 and i[21] == 1:
+            l.append("19:00-20:00")
+        free_s[days[d]] = l
+        d += 1
+        l = []
+
+    #print(free_s)
+    return(json.dumps(free_s))
 
 @app.route('/')
 def index():
