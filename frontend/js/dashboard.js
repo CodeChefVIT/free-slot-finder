@@ -10,13 +10,6 @@ class Team {
     this.teamName = teamName;
     this.teamMembers=[]
   };
-  addTeamMember(target){
-
-    
-  }
-  deleteTeamMember(){
-
-  }
 }
 class Teams{
   constructor(){
@@ -65,7 +58,7 @@ class UI{
         <div>${teamArr[i].teamMembers[j].memName}</div>
         <div style="flex:1;"></div>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="${j}" name="ugu${j} checked" >
+          <input class="form-check-input" type="checkbox" value="${j}" name="ugu${j} "checked >
         </div>
         <button class="btn del-mem" type="submit" i><i class="fas fa-trash"></i></button>
       </div>`;
@@ -89,6 +82,33 @@ const ui = new UI();
 document.querySelector("#btn-add-teams").addEventListener("click",function(e){
   e.preventDefault();
   accountName.addTeam();
+
+
+
+
+
+  var raw = {
+        'teamName': 'First team'
+    };
+    
+    var requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-type' : 'application/json'
+      },
+      body: JSON.stringify(raw) ,
+      redirect: 'follow'
+    };
+    
+    fetch("https://free-slot-finder-app.herokuapp.com/team/add", requestOptions)
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+
+
+
+
+
   ui.dispTeams(accountName);
 
 })
