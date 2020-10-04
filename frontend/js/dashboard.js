@@ -52,7 +52,7 @@ class UI{
         <input type="text" class="form-control"  placeholder="New Member">
         <div class="input-group-append ">
           <button class="btn add-btn add-team-btn" type="submit" >Add</button>
-          <button class="btn" type="submit" i><i class="fas fa-trash"></i></button>
+          <button class="btn del-team" type="submit" i><i class="fas fa-trash"></i></button>
         </div>
       </div>
     </form>`
@@ -65,8 +65,9 @@ class UI{
         <div>${teamArr[i].teamMembers[j].memName}</div>
         <div style="flex:1;"></div>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" checked>
+          <input class="form-check-input" type="checkbox" value="${j}" name="ugu${j} checked" >
         </div>
+        <button class="btn del-mem" type="submit" i><i class="fas fa-trash"></i></button>
       </div>`;
       }
       teamsUI.appendChild(teamBlock);
@@ -93,7 +94,7 @@ document.querySelector("#btn-add-teams").addEventListener("click",function(e){
 })
 document.querySelector("#team-list").addEventListener("click",function(e){
   e.preventDefault();
-  let clickedElementSuperParent = e.target.parentElement.parentElement.parentElement
+  let clickedTeamSuperParent = e.target.parentElement.parentElement.parentElement
   let clickedTeamNo = e.target.parentElement.parentElement.parentElement.className
   if(e.target.className == "btn add-btn add-team-btn"){
     let memNam = e.target.parentElement.previousElementSibling.value;
@@ -102,7 +103,7 @@ document.querySelector("#team-list").addEventListener("click",function(e){
     accountName.team[clickedTeamNo].teamMembers.push(tempMem )
     ui.dispTeams(accountName);
   }
-  // if (e.target.)
+  
 
 })
 
