@@ -19,5 +19,5 @@ post = (folder,raw) => {
       console.log(result)
       window.location.href = "dashboard.html";
     })
-    .catch(error => console.log( error));
+    .catch(error => console.log('error', error));
 };
