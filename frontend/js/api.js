@@ -15,6 +15,9 @@ post = (folder,raw) => {
   console.log(`https://free-slot-finder-app.herokuapp.com/${folder}`)
   fetch(`https://free-slot-finder-app.herokuapp.com/${folder}`, requestOptions)
     .then(response => response.text())
-    .then(result => console.log(result))
+    .then(result => {
+      console.log(result)
+      window.location.href = "dashboard.html";
+    })
     .catch(error => console.log('error', error));
 };
