@@ -21,23 +21,20 @@ class Teams {
     let data = {
       teamName: teamName,
     };
-    post(
-      "team/add",
-      data,
-      false,
-      false,
-      token,
-      get("team/all", token, () => {
-        console.log(res);
-        let teamName = res[res.length - 1].teamName;
-        let teamID = res[res.length - 1]._id;
-        const temp = new Team(teamName, teamID);
-        this.team.push(temp);
-        console.log(this.team);
-        ui.dispTeams(accountName);
-      }),
-    );
+    post("team/add", data, false, false, token, true, this.getTeam);
   }
+  getTeam = () => {
+    get("team/all", token, () => {
+      console.log(res);
+      let teamName = res[res.length - 1].teamName;
+      let teamID = res[res.length - 1]._id;
+      const temp = new Team(teamName, teamID);
+      console.log(temp);
+      this.team.push(temp);
+      console.log(this.team);
+      ui.dispTeams(accountName);
+    });
+  };
   deleteTeam() {}
 
   teamsInit = () => {
@@ -65,7 +62,8 @@ class UI {
           <span class="input-group-text" ><i class="fas fa-users"></i></span>
           <div class="btn team-name" > ${teamArr[i].teamName}</div>
         </div>
-        <input type="text" class="form-control"  placeholder="New Member">
+        <input type="text" class="form-control" name="abc"  placeholder="New Member" required>
+        <input type="file" r>
         <div class="input-group-append ">
           <button class="btn add-btn add-team-btn" type="submit" >Add</button>
           <button class="btn del-team" type="submit" i><i class="fas fa-trash"></i></button>
@@ -80,7 +78,7 @@ class UI {
         <div>${teamArr[i].teamMembers[j].memName}</div>
         <div style="flex:1;"></div>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="${j}" name="ugu${j} "checked >
+          <input class="form-check-input" type="checkbox" value="${j}" name="ugu${j} >
         </div>
         <button class="btn del-mem" type="submit" i><i class="fas fa-trash"></i></button>
       </div>`;
