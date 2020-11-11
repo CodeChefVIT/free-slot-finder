@@ -8,10 +8,7 @@
 
 ---
 
-  [![UI ](https://img.shields.io/badge/User%20Interface-Link%20to%20UI-orange?style=flat-square&logo=appveyor)](https://nodemailer-cc.herokuapp.com/)
-
-
-
+[![UI ](https://img.shields.io/badge/User%20Interface-Link%20to%20UI-orange?style=flat-square&logo=appveyor)](https://nodemailer-cc.herokuapp.com/)
 
 ## Features
 
@@ -22,15 +19,15 @@
 - Make multiple teams for different purpose.
 - Auto deletion of teams at the end of the semester.
 
-
 ## Screenshots
+
 <img src="/assets/screenshots/Screenshot 2020-06-21 at 4.11.37 PM.png" alt="Project Screenshots">
 
-
 ## Contributors
-- <a href="https://github.com/shashtag">Shashwat Gupta</a>
-- <a href="https://github.com/">Shruti Shreya</a>
 
+- <a href="https://github.com/shashtag">Shashwat Gupta</a>
+- <a href="https://github.com/RajatSablok">Rajat Sablok</a>
+- <a href="https://github.com/">Shruti Shreya</a>
 
 ## License
 
