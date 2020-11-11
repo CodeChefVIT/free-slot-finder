@@ -20,8 +20,9 @@ hops = []
 final_list = []
 cd = [0,0]
 
-tt = Image.open(sys.argv[1]).rotate(180)
+#tt = Image.open(sys.argv[1]).rotate(180)
 #tt = Image.open("ttpxt.png")
+tt = Image.open("tt3.png").rotate(180)
 
 #print(datetime.datetime.time(datetime.datetime.now()))
 
@@ -120,13 +121,13 @@ for x in range(14 - cd[0]):
 ##rotating the array
 slot_state = np.rot90(slot_state, 2, (0,1))
 
-'''a = 0
+a = 0
 while a < 13:
     b = 0
     while b < 13:
         final_list.append(int(slot_state[a,b] + slot_state[a+1, b]))
         b = b + 1
-    a = a + 2'''
+    a = a + 2
     
 f= []
 for i in range(0,5):
@@ -185,65 +186,145 @@ for i in range(0,10,2):
 #print(datetime.datetime.time(datetime.datetime.now()))
 #os.remove("ttpxt.png")
 #print(json.dumps(final_list))
-'''i=0
+"""
+l=[]
+free_slot_dict={}
+i=0
 for y in final_list:
     if(i==0):
         s="Monday"
-        print(s)
-        print("\n")
+        #print("\n")
+        #print(s)
     elif(i==13):
-        s="Tuesday"
-        print("\n")
-        print(s)
+        #print(l)
+        s = "Tuesday"
+        free_slot_dict["Monday"]=l
+        l=[]
+
+        #print("\n")
+        #print(s)
     elif(i==26):
+        #print(l)
+        free_slot_dict["Tuesday"]=l
+        l = []
         s="Wednesday"
-        print("\n")
-        print(s)
+        #print("\n")
+        #print(s)
     elif(i==39):
+        #print(l)
+        free_slot_dict["Wednesday"]=l
+        l = []
         s="Thrusday"
-        print("\n")
-        print(s)
+        #print("\n")
+        #print(s)
     elif(i==52):
+        #print(l)
+        free_slot_dict["Thursday"]=l
+        l = []
         s="Friday"
-        print("\n")
-        print(s)
-        
+        #print("\n")
+        #print(s)
+
     if(y==0):
             if(i%13==0):
-                print("8:00-9:00 ")
+                #print("8:00-9:00 ")
+                l.append("8:00-9:00")
             if(i%13==1):
-                print("9:00-10:00 ")
+                #print("9:00-10:00 ")
+                l.append("9:00-10:00 ")
             if(i%13==2):
-                print("10:00-11:00 ")
+                #print("10:00-11:00 ")
+                l.append("10:00-11:00 ")
             if(i%13==3):
-                print("11:00-12:00 ")
+                #print("11:00-12:00 ")
+                l.append("11:00-12:00 ")
             if(i%13==4):
-                print("12:00-13:00 ")
+                #print("12:00-13:00 ")
+                l.append("12:00-13:00 ")
             if(i%13==5):
-                print("13:00-14:00 ")
+                #print("13:00-14:00 ")
+                l.append("13:00-14:00 ")
             if(i%13==6):
-                print("14:00-15:00 ")
+                #print("14:00-15:00 ")
+                l.append("14:00-15:00 ")
             if(i%13==7):
-                print("15:00-16:00 ")
+                #print("15:00-16:00 ")
+                l.append("15:00-16:00 ")
             if(i%13==8):
-                print("16:00-17:00 ")
+                #print("16:00-17:00 ")
+                l.append("16:00-17:00 ")
             if(i%13==9):
-                print("17:00-18:00 ")
+                #print("17:00-18:00 ")
+                l.append("17:00-18:00 ")
             if(i%13==10):
-                print("18:00-18:50 ")
+                #print("18:00-18:50 ")
+                l.append("18:00-18:50 ")
             if(i%13==11):
-                print("18:50-19:00 ")
+                #print("18:50-19:00 ")
+                l.append("18:50-19:00 ")
             if(i%13==12):
-                print("19:00-20:00 ")
+                #print("19:00-20:00 ")
+                l.append("19:00-20:00 ")
+
+
     if(i==64):
+        #print(l)
+        free_slot_dict["Friday"]=l
         break
     i=i+1
-    '''
+"""
+#print(final_list)
 print(f)
+#print(free_slot_dict)
+#print(json.dumps(free_slot_dict))
 
 # x = input("\nGive any input to continue...")
 
+days=["Monday","Tuesday","Wednesday","Thursday","Friday"]
+free_s={}
+l=[]
+d=0
+for i in f:
+    if i[0]==1 and i[1]==1:
+        l.append("8:00-9:00")
+    if i[2]==1 and i[3]==1:
+        l.append("9:00-10:00")
+    if i[2]==0 and i[3]==1:
+        l.append("9:30-10:00")
+    if i[4] == 1 and i[5] == 1:
+        l.append("10:00-11:00")
+    if i[6] == 1 and i[7] == 1:
+        l.append("11:00-12:00")
+    if i[6] == 1 and i[7]== 0:
+        l.append("11:00-11:30")
+    if i[6] == 0 and i[6] == 1:
+        l.append("11:30-12:00")
+    if i[8]==1 and i[9]==1:
+        l.append("12:00-13:00")
+    if i[10]==1 and i[11]==1:
+        l.append("14:00-15:00")
+    if i[12]==1 and i[13]==1:
+        l.append("15:00-16:00")
+    if i[12]==0 and i[13]==1:
+        l.append("15:30-16:00")
+    if i[14] == 1 and i[15] == 1:
+        l.append("16:00-17:00")
+    if i[16] == 1 and i[17]== 0:
+        l.append("17:00-17:30")
+    if i[16] == 1 and i[17] == 1:
+        l.append("17:00-18:00")
+    if i[16] == 0 and i[17] == 1:
+        l.append("17:30-18:00")
+    if i[18] == 1 and i[19] == 1:
+        l.append("18:00-19:00")
+    if i[20] == 1 and i[21] == 1:
+        l.append("19:00-20:00")
+    free_s[days[d]]=l
+    d+=1
+    l=[]
+
+print(free_s)
 
 
 
-exit()
+

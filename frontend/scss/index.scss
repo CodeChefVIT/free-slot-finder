@@ -1,0 +1,293 @@
+$dark: #022621;
+$font-size-base:1rem !default; // Assumes the browser default, typically `16px`
+$font-size-lg: $font-size-base * 1.5 ;
+$primary: #11B9F0;
+$secondary: #fff;
+
+$card-bg: rgba(255,255,255,.9);
+$i-width: 100%;
+$i-height: 560 * $i-width /315;
+$display1-size: 5.5rem;
+
+
+
+@import "bs/functions";
+@import "bs/variables";
+@import "bs/mixins";
+@import "bs/root";
+@import "bs/reboot";
+@import "bs/type";
+@import "bs/images";
+@import "bs/code";
+@import "bs/grid";
+@import "bs/tables";
+@import "bs/forms";
+@import "bs/buttons";
+@import "bs/transitions";
+@import "bs/dropdown";
+@import "bs/button-group";
+@import "bs/input-group";
+@import "bs/custom-forms";
+@import "bs/nav";
+@import "bs/navbar";
+@import "bs/card";
+@import "bs/breadcrumb";
+@import "bs/pagination";
+@import "bs/badge";
+@import "bs/jumbotron";
+@import "bs/alert";
+@import "bs/progress";
+@import "bs/media";
+@import "bs/list-group";
+@import "bs/close";
+@import "bs/modal";
+@import "bs/tooltip";
+@import "bs/popover";
+@import "bs/carousel";
+@import "bs/utilities";
+@import "bs/print";
+@import "modal";
+
+// html{
+//   background-color: 032621;
+// }
+html,body{
+  overflow-x: hidden;
+  overflow-y: visible;
+  
+}
+
+
+.hero{
+  position: relative;
+  
+  padding-bottom: 200px;
+  margin-bottom: 55vw;
+  padding-top: 56px;
+  overflow-y: visible;
+  .bg{
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -2;
+    background-image: url(../img/hero-bg.svg);
+  background-size: cover;
+  background-position: top left;
+  background-repeat: no-repeat;
+  }
+.navbar{
+  color: white;
+  .btn-login{
+    color: #24CD98 !important;
+  }
+  .btn-signup{
+    color: #11B9F0 !important;
+  }
+  .btn{
+    width: 120px;
+  }
+}
+
+}
+.btn:active {
+  transform: scale(0.95);
+}
+.navbar-brand{
+  font-family: futura-medium;
+  margin-top: -5px;
+  position: relative;
+    .brand-txt{
+      top: 5px ;
+      left: 56px;
+      display: inline-block;
+      letter-spacing: 0.5px;
+    }
+}
+.nav-link{
+  margin-left: 24px;
+}
+.display-1{
+  font-family: -apple-system;
+}
+.hero-animated-container{
+  position: relative;
+  .hero-animated{
+    background-image: url(../img/hero-animation.svg);
+    content: '';
+    background-position: left;
+    position: absolute;
+    top: -110px;
+    left: 0px;
+    z-index: -1;
+    width: 100%;
+    height: 600px;
+    background-repeat: no-repeat;
+  }
+}
+.btn{
+  color: #12100E;
+}
+.features{
+  background-image: url(../img/feature-bg.svg);
+  background-position: bottom left;
+  background-repeat: no-repeat;
+  padding-bottom: 150px;
+
+  img{
+    width: 48px;
+  }
+}
+.video{
+  margin-top: -1px;
+  padding: 25px 0 100px 0;
+  background-color: #24CD98;
+  color: white;
+  
+  .jumbotron{
+    color: black;
+  }
+  
+  
+}
+.stats{
+  margin-top: -1px;
+}
+.links{
+  background-color: rgba($color: #000000, $alpha: 0.1);
+}
+.contact{
+  background-color: #022621;
+  color: white !important;
+  a{
+    color: white;
+  }
+  img{
+    width: 250px;
+  }
+  .social{
+    color: white;
+    font-size: 20px;
+    
+  }
+}
+@media (min-width: 576px) {
+  .hero{
+    margin-bottom: 65vw;
+
+  }
+  .hero-animated-container{
+    
+    .hero-animated{
+      top: -150px;
+      height: 800px;
+    }
+  }
+  .features{
+    
+    padding-bottom: 250px;
+  
+  }
+  .social{
+    
+    font-size: 30px;
+    
+  }
+
+}
+@media (min-width: 768px) {
+  .hero{
+    
+    padding-bottom: 50px;
+    overflow-y: visible;
+    margin-bottom: 5vw;
+
+  
+  }
+  .nowrap-md{
+    white-space: nowrap;
+  }
+  .hero-animated-container{
+    .hero-animated{
+      top: 40px;
+      height: 600px;
+    }
+  }
+}
+@media (min-width: 992px) {
+  .hero{
+    padding-bottom: 125px;
+
+  }
+  .hero-animated-container{
+    .hero-animated{
+      top: 0px;
+      
+    }
+  }
+}
+@media (min-width: 1200px) {
+  .hero{
+    padding-bottom: 200px;
+
+  }
+  .hero-animated-container{
+    .hero-animated{
+      height: 800px;
+      top: -80px;
+      
+    }
+  }
+}
+
+.a{
+  border: 3px solid black;
+}
+
+.dashboard{
+  padding-top: 100px;
+  .bg{
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -2;
+    background-image: url(../img/hero-bg.svg);
+    background-size: cover;
+    background-position: top left;
+    background-repeat: no-repeat;
+  }
+  .navbar {
+    color: white;
+  }
+  svg{
+    color: black !important;
+  }
+  
+
+  #team-list{
+    padding: 0;
+    li{
+      height: max-content;
+      list-style: none;
+    }
+    li:nth-of-type(2n+1){
+      background-color: white;
+    }
+    .icon-team{
+      width: 40px;
+      height: 38px;
+      display: inline-block;
+    }
+  }
+  
+
+  .add-btn{
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+  }
+  .team-name{
+    width: 20vw;
+    overflow-x: hidden;
+  }
+}
