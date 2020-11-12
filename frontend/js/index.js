@@ -10,7 +10,7 @@ loginBtn = document
       email: signinEmail,
       password: signinPass,
     };
-    post("user/login", data, true, true, false, null);
+    post("user/login", data, true, true, true, false, false, false, null);
   });
 signupBtn = document
   .querySelector("#signup-btn")
@@ -23,5 +23,5 @@ signupBtn = document
       email: signupEmail,
       password: signupPass,
     };
-    post("user/signup", data, false, false, false, null);
+    post("user/signup", data, false, false, true, false, false, false, null);
   });

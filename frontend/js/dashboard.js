@@ -1,13 +1,12 @@
 let userData = JSON.parse(localStorage.getItem("user"));
 let token = userData.token;
-console.log(token);
 
 let teamsUI = document.querySelector("#team-list");
 
 const accountName = new Teams();
 const ui = new UI();
 
-get("team/all", token, accountName.teamsInit);
+get("team/all", token, true, null, accountName.teamsInit);
 
 document
   .querySelector("#btn-add-teams")
@@ -16,7 +15,6 @@ document
     accountName.addTeam();
   });
 document.querySelector("#team-list").addEventListener("click", function (e) {
-  e.preventDefault();
   let clickedTeamSuperParent =
     e.target.parentElement.parentElement.parentElement;
   if (e.target.className == "btn add-btn add-team-btn") {
@@ -32,14 +30,32 @@ document.querySelector("#team-list").addEventListener("click", function (e) {
         }
       }
 
-      let memNam = e.target.parentElement.previousElementSibling.value;
-      let timeT = 0;
+      let memNam =
+        e.target.parentElement.previousElementSibling.previousElementSibling
+          .value;
       let fd = new FormData(clickedTeamSuperParent);
-      console.log([...fd.keys()].length);
-      const tempMem = new TeamMember(memNam, timeT);
+      fd.delete("memberName");
+      addMember = (result) => {
+        result = JSON.parse(result);
+        timeT = result.result.timetable;
+        memId = result.result._id;
+        const tempMem = new TeamMember(memNam, memId, timeT);
 
-      accountName.team[teamNO].teamMembers.push(tempMem);
-      ui.dispTeams(accountName);
+        accountName.team[teamNO].teamMembers.push(tempMem);
+        ui.dispTeams(accountName);
+      };
+
+      post(
+        `team/member/add?teamId=${clickedTeamID}&memberName=${memNam}`,
+        fd,
+        false,
+        false,
+        false,
+        true,
+        token,
+        true,
+        addMember,
+      );
     }
   }
 });
