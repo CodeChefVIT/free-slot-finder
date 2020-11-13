@@ -115,6 +115,46 @@ router.get("/all", checkAuth, async (req, res, next) => {
     });
 });
 
+//Delete a member
+router.delete("/", checkAuth, async (req, res, next) => {
+  const userId = req.user.userId;
+  const { teamId, memberId } = req.body;
+
+  if (!teamId || !memberId) {
+    return res.status(400).json({
+      message: "1 or more parameter(s) missing from req.body",
+    });
+  }
+
+  await Team.findById(teamId)
+    .then(async (team) => {
+      if (team.createdBy == userId) {
+        await UserSlot.deleteOne({ _id: memberId })
+          .then(async () => {
+            res.status(200).json({
+              message: "Member removed successfully",
+            });
+          })
+          .catch((err) => {
+            res.status(500).json({
+              message: "Something went wrong",
+              error: err.toString(),
+            });
+          });
+      } else {
+        res.status(403).json({
+          message: "You are not authorized to remove this member",
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({
+        message: "Something went wrong",
+        error: err.toString(),
+      });
+    });
+});
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "./public/uploads/");
